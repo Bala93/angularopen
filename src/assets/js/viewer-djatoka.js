@@ -37,13 +37,24 @@ function initLayers(update_fluo_only) {
 
 }
 
+function update_tiles(secidx_nis, secidx_fluo) {
+	app.seriesid_nissl = secidx_nis;
+	app.seriesid_fluo = secidx_fluo;
+	//TODO: update annotation layer also
+}
 
-function setupOL() {
+function setupOL(secidx_nis, secidx_fluo) {
 
     var app = window.app;
 
-	app.seriesid_nissl = '1055802';	//FIXME: move to html
-	app.seriesid_fluo = '1056090';
+	app.seriesid_nissl = '';	
+	app.seriesid_fluo = '';
+
+	if(secidx_nis>0)
+		app.seriesid_nissl = secidx_nis;
+	if(secidx_fluo>0)
+		app.seriesid_fluo = secidx_fluo;
+
 	app.crange = '0-255,0-255,0-255'
 	app.gamma = '1'
 

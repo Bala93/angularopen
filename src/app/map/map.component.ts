@@ -5,7 +5,7 @@ import { HostListener } from "@angular/core";
 import * as $ from "jquery";
 declare var ol:any;
 
-declare function setupOL();
+declare function setupOL(secidx_nis:any, secidx_fluo:any);
 declare function initLayers();
 declare function add_annotLayers();
 // declare function add_controls();
@@ -44,7 +44,7 @@ export class MapComponent implements OnInit {
 
   ngAfterViewInit(){
         
-    setupOL();
+    setupOL('1055802','1056090');
     initLayers();
     add_annotLayers();
     // add_controls();
