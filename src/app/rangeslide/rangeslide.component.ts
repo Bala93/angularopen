@@ -43,7 +43,8 @@ export class RangeslideComponent implements OnInit {
   default(){
     console.log("default");
     this.app.crange = "0-255,0-255,0-255";
-    console.log(this.app.crange);
+    this.app.gamma = '1';
+    //console.log(this.app.crange);
     initLayers(false);
   }
 }

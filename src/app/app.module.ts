@@ -11,7 +11,7 @@ import { HttpTestService } from "./httpservice";
 import { ThumbnailComponent } from './thumbnail/thumbnail.component';
 import { SliderCheckComponent } from './slider-check/slider-check.component';
 import { RangeslideComponent } from './rangeslide/rangeslide.component';
-// import { SlickModule} from "ngx-slick";
+import { SlickModule} from "ngx-slick";
 // declare var angular: any;
 
 
@@ -30,10 +30,10 @@ import { RangeslideComponent } from './rangeslide/rangeslide.component';
     BrowserModule,
     HttpModule,
     MatSliderModule,
-    RouterModule.forRoot(rootRouterConfig, { })
-    
-    // SlickModule.forRoot()
+    RouterModule.forRoot(rootRouterConfig, { }),
+    SlickModule.forRoot()
   ],
+  
   providers: [],
   bootstrap: [AppComponent]
 })

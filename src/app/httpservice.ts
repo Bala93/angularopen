@@ -2,15 +2,16 @@ import {Injectable}from  '@angular/core';
 import {Http} from '@angular/http';
 import 'rxjs/add/operator/map';
 import {Headers}from'@angular/http';
+import { Observable } from "rxjs/Observable";
 
 @Injectable()
 export class HttpTestService{
     constructor(private _http: Http){}
  
-    getthumbnails(){
+    getthumbnails():Observable<any>{
         return this._http.get('http://mitradevel.cshl.org/webtools/seriesbrowser/getthumbnails/4618/')
             .map(res=>res.json());
-        }
+    }
 
     postFeatures(params){
         console.log("Saving");

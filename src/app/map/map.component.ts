@@ -55,7 +55,7 @@ export class MapComponent implements OnInit {
 
     //this.select = this.app.select;
 
-    var slidervalues = [0,128,256,512,1024,2048,4095];
+    //var slidervalues = [0,128,256,512,1024,2048,4095];
 
     
 
@@ -228,7 +228,7 @@ getpolygons(){
    error=>alert(error),
 ); 
  
-}
+}update
 
 add_polygon_feature(getData){
   //Add features to the vector_data -- Firstpass

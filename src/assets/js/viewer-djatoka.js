@@ -1,6 +1,6 @@
 
 function rft_nissl() {
-    return 'MouseBrain/'+app.seriesid_nissl+'&svc.crange='+app.crange+'&svc.gamma='+app.gamma;
+    return 'MouseBrain/'+app.seriesid_nissl; //+'&svc.crange='+app.crange+'&svc.gamma='+app.gamma;
 }
 
 function rft_fluo() {

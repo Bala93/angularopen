@@ -16,7 +16,7 @@ function createsliders(){
     var cnt2 = [0,0,0];
     app.cnt1 = cnt1;
     app.cnt2 = cnt2;
-//     app.gamma  = gam;
+    app.gamma  = gam;
     
     for(ci=0;ci<3;++ci) {
             cnt1[ci]=slidersteps[fromidx[ci]];
@@ -124,7 +124,7 @@ function createsliders(){
         },
         onFinish: function (data) {
             gam = data.from;
-        //     app.gamma = gam;
+            app.gamma = gam;
             //      console.log("onFinish: " + data.from);
         },
         onUpdate: function (data) {
