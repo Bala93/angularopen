@@ -1,4 +1,4 @@
-<div class="col-md-12">
+<!-- <div class="col-md-12">
           <button class="btn btn-primary pull-right" (click)="setDefault()" >   
           <span  style="cursor:move" class="glyphicon glyphicon-screenshot "></span>
         </button>
@@ -73,4 +73,78 @@
         </div>
       </div>
       <app-thumbnail></app-thumbnail>
+      </div> -->
+
+
+      <div class="container-fulid">
+        <div class="row">
+            <div class="col-md-12 col-lg-12 col-xl-12">
+                <button class="btn btn-primary pull-right" (click)="setDefault()" style="margin:10px" >   
+                  <span  style="cursor:move" class="glyphicon glyphicon-screenshot "></span>
+                </button>
+              </div>
+        </div>
+      
+        <div class="col-md-12">
+          <div class="col-md-2"  style=" background-color:black;">
+            <div class="well">
+                <div class="col-md-10 col-md-offset-1"  > 
+                    <span class="badge">Geometry type</span>
+                </div>
+      
+                <select class="form-control" style="cursor:pointer;" id="modetype" style="margin-top:30px; " (change)="onchangeMode($event.target.value)">
+                    <option value="view">View</option>
+                    <option value="draw">Draw</option>
+                    <option value="delete">Delete</option>
+                </select>
+                <select  class="form-control" style="cursor:pointer;" id="type"  style="margin-top:20px;"  *ngIf="drawtype"  (change)="onChangeGeometry($event.target.value)">
+                    <option  value="Point">Point</option>
+                    <option value="LineString">LineString</option>
+                    <option value="Polygon">Polygon</option>
+                </select>
+                <div class="row" style="margin-top:15px" > 
+                  <div class="col-md-4 col-md-offset-2">
+                    <span class="badge" >Mouse Position</span>
+                    <br>
+                    <span class="badge"style="margin-top:15px" >xxxxxxxxxx</span>
+                  </div>
+                </div>
+                <div>
+                    <ul class="list-group" style="margin-top: 15px">
+                        <li class="list-group-item">
+                            <input type="checkbox" style=" cursor:pointer " (change)="groundtruth($event)" value="groundtruth" checked><b>Show detections({{total_detections}})</b>
+                        </li>
+                        <li class="list-group-item">
+                           <input style=" cursor:pointer " type="checkbox" (change)="userdraw($event)" value="userdraw" checked><b> my markings({{drawn_features}})</b>
+                        </li>
+                        <li class="list-group-item">
+                            <input style=" cursor:pointer " type="checkbox" (change)="userdel($event)" value="userdel"><b>Show my deletions:({{deleted_features}})</b>
+                        </li>
+                    </ul>
+      
+                </div>
+                <div class="row">
+                    <label  class="w3-center w3-animate-zoom" style="color:green;font-weight:bold" *ngIf="response" >
+                      <p><i class="fa fa-spinner w3-spin" style="font-size:24px"></i></p></label>
+                    <label class="w3-center w3-animate-zoom" style="color:green;font-weight:bold">{{response_msg}}</label>
+                    <button class="btn btn-primary pull-right"   (click)="callpost()">Save</button>
+                    
+                  </div>
+               
+            </div>
+      
+      
+          </div>
+          <div class="col-md-10"  style=" border-radius: 25px;border: 2px solid rgba(187, 203, 218, 0.21);padding: 10px;">
+             
+              <app-rangeslide  style="position:fixed; z-index:100 ; right: 2%; width: 15%; padding-right: 5px; padding-left: 10px; padding-bottom: 10px; padding-top: 5px;"></app-rangeslide>
+            
+              <div id="target"  class="map" style="position:inherit; height:450px"></div>
+          </div>
+          <div class="col-md-12"  >
+            <app-thumbnail style="padding:5px" ></app-thumbnail>
+          </div>
+         
+        </div>
       </div>
+      

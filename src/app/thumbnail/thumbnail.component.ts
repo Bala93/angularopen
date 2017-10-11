@@ -56,7 +56,7 @@ extract_fluo_tnails(){
           tmpslides[tmplist[ii][0]] =  tmplist[ii][1];
           secids_nissl[tmplist[ii][0]]=tmplist[ii][2];
       }
-      console.log(tmpslides);
+      // console.log(tmpslides);
       // display thumbnail down
       this.slide_out = tmpslides;
       // ids for nissl to refresh map

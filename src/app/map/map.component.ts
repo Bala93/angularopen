@@ -34,12 +34,17 @@ export class MapComponent implements OnInit {
   response_msg;
   getData;
   first_pass_length;
+  windowsize;
+
+
 
   constructor(private _httpService: HttpTestService){
   }
     
   ngOnInit() {
     this.app = window["app"];
+    this.windowsize = window.innerHeight;
+    console.log(this.windowsize);
   }
 
   ngAfterViewInit(){

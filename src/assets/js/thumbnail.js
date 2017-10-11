@@ -13,7 +13,7 @@ function thumbnail_init(urls,secids_nis, secids_fluo){
         innerhtml += element;
         // document.getElementById('thumbnail').innerHTML += element;
     }
-    console.log(innerhtml);
+    // console.log(innerhtml);
     $('#thumbnail').append(innerhtml);
     
 }
@@ -25,10 +25,11 @@ function thumbnail_load(){
         slidesToShow: 10,
         slidesToScroll: 3,
         initialSlide: startslide,
-        prevArrow: '<a href="#" class="prev">prev</a>',
-        nextArrow: '<a href="#" class="next">next</a>',
+        arrows: true,
+        prevArrow: '<a href="#" class="slick-prev prev">prev</a>',
+        nextArrow: '<a href="#" class="slick-next next">next</a>',
         infinite: false,
-        //prevArrow: '<img src="/static/img/arrow_left.png" width="40px" />',
+    
     });
     
 }

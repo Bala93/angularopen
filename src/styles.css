@@ -1,3 +1,26 @@
 /* You can add global styles to this file, and also import other style files */
 /* @import '~@angular/material/prebuilt-themes/deeppurple-amber.css'; */
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
+
+
+
+body {
+    background-color:black;
+}
+span .irs-min  {
+    color: wheat !important;
+}
+span  .irs-max {
+    color: wheat !important;
+}
+.irs-slider{
+width: 25px  !important;
+height: 22px  !important;
+}
+.irs-to{
+    margin-top: 3px !important;
+}
+.irs-from{
+    margin-top: 3px !important;
+}
