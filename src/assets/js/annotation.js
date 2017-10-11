@@ -122,3 +122,86 @@ draw_style = new ol.style.Style({
 //   app.add_control(mousePositionControl);
 
 // }
+
+var thickLineToPolygon = (function () {
+  function getOffsets(a,b,thickness) {
+    dx = b[0] - a[0];
+    dy = b[1] -a[1];
+    len = Math.sqrt(dx*dx + dy*dy);
+    scale = thickness / (2*len);
+    ddx = -scale*dy;
+    ddy = scale*dx;
+    //ddx = ddx + (ddx >0)?0.5:-0.5;
+    //ddy = ddy + (ddy>0)?0.5:-0.5;
+    return [ddx, ddy];
+  }
+  
+  function getIntersection(a1, b1, a2, b2) {
+    k1 = (b1[1]-a1[1])/(b1[0]-a1[0]);
+    k2 = (b2[1]-a2[1])/(b2[0]-a2[0]);
+    
+    if(k1===k2) return;
+    
+    m1 = a1[1] - k1*a1[0];
+    m2 = a2[1] - k2*a2[0];
+    
+    x = (m1-m2)/(k2-k1);
+    
+    y = k1 * x + m1;
+    
+    return [x,y];
+  }
+  
+    //points is linestring
+  
+  function me(points, thickness) {
+    var off,
+      poly = [],
+      isFirst, isLast,
+      prevA, prevB,
+      interA, interB,
+      p0a, p1a, p0b, p1b;
+    
+    for(var i=0, i1=points.length - 1; i<i1; i++) {
+      isFirst=!i;
+      isLast = (i===points.length-2);
+      
+      off = getOffsets(points[i], points[i+1], thickness);
+      
+      p0a = [ points[i][0]+off[0], points[i][1]+off[1] ];
+      p1a = [ points[i+1][0]+off[0], points[i+1][1]+off[1]];
+      
+      p0b = [points[i][0] - off[0], points[i][1] -off[1]];
+      p1b = [points[i+1][0] -off[0], points[i+1][1]-off[1]];
+      
+      if (!isFirst) {
+        if(interA=getIntersection(prevA[0],prevA[1], p0a, p1a)) {
+          poly.unshift(interA);
+        }
+        if(interB=getIntersection(prevB[0], prevB[1], p0b, p1b)){
+          poly.push(interB);
+        }
+      }
+      
+      if(isFirst) {
+        poly.unshift(p0a);
+        poly.push(p0b);
+      }
+      
+      if(isLast) {
+        poly.unshift(p1a);
+        poly.push(p1b);
+      }
+      
+      if(!isLast) {
+        prevA = [p0a, p1a];
+        prevB = [p0b, p1b];
+      }
+    }
+    
+    return poly;
+    
+  }
+  
+  return me;
+}());
