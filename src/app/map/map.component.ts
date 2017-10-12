@@ -91,6 +91,19 @@ export class MapComponent implements OnInit {
         type: devicevalue,
         style: this.app.draw_style,
       });
+
+      this.draw.on('drawend',function(evt){
+        // console.log('End');
+        var feature   = evt.feature;
+        var geo_type  = feature.getGeometry().getType();
+        if (geo_type == 'LineString'){
+        var linecoord = feature.getGeometry().getCoordinates();
+        // this.app.vector_edit.removeFeature(feature);
+        // Call the function using linecoord
+        // this.app.vector_edit.addFeature()
+        }
+      });
+
       this.app.map.addInteraction(this.draw);
     }
 

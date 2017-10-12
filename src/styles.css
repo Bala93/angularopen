@@ -24,3 +24,7 @@ height: 22px  !important;
 .irs-from{
     margin-top: 3px !important;
 }
+
+#filmstrip .highlighted {
+    border-top: 3px solid #FF4500;
+  }

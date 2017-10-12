@@ -111,7 +111,7 @@ function createsliders(){
     var range_gam = $("#range_gam");
     range_gam.ionRangeSlider({
         type: "single",
-        min: 0.1,
+        min: 0,
         max: 2,
         from: gam,
         step: 0.1,

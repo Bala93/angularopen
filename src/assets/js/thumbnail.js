@@ -8,7 +8,10 @@ function thumbnail_init(urls, secids_nis, secids_fluo) {
             secid_nis = secids_nis[i] != undefined ? secids_nis[i] : 0;
             secid_fl = secids_fluo[i] != undefined ? secids_fluo[i] : 0;
             evt = '"changesection(' + secid_nis + ',' + secid_fl + ')"';
-            element = '<div><img data-lazy= "http://mouse.brainarchitecture.org' + urls[i] + '" onclick =' + evt + '/></div>'
+            if (i == 13)
+                element = '<div><img id = nis_' + secid_nis + ' class = "highlighted" data-lazy= "http://mouse.brainarchitecture.org' + urls[i] + '" onclick =' + evt + '/></div>'
+            else
+                element = '<div><img id = nis_' + secid_nis  + ' data-lazy= "http://mouse.brainarchitecture.org' + urls[i] + '" onclick =' + evt + '/></div>'
         }
         innerhtml += element;
         // document.getElementById('thumbnail').innerHTML += element;
@@ -35,8 +38,11 @@ function thumbnail_load() {
 }
 
 function changesection(secidx_nis, secidx_fluo) {
-
     update_tiles('' + secidx_nis, '' + secidx_fluo);
     initLayers(false);
-    //return false;
+    prev_tile_id = '#'+document.getElementsByClassName('highlighted')[0].id;
+    current_tile_id = '#nis_' + secidx_nis;
+    $(prev_tile_id).removeClass('highlighted');
+    $(current_tile_id).addClass('highlighted');
+
 }
