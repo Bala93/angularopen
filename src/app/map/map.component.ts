@@ -10,6 +10,7 @@ declare function initLayers();
 declare function add_annotLayers();
 // declare function add_controls();
 declare function set_draw_style();
+declare function thickLineToPolygon(LineString:any,thickness:any);
 // declare function 
 
 
@@ -97,10 +98,22 @@ export class MapComponent implements OnInit {
         var feature   = evt.feature;
         var geo_type  = feature.getGeometry().getType();
         if (geo_type == 'LineString'){
-        var linecoord = feature.getGeometry().getCoordinates();
+          var linecoord = feature.getGeometry().getCoordinates();
+          console.log(linecoord); 
+          // var poly = thickLineToPolygon(linecoord,20);
+          // poly.push(poly[0]);
+          // var feature1 = new ol.Feature({
+          //   geometry: new ol.geom.Polygon(poly)
+          // })
+          // console.log(feature1);
+          var poly_feature = {'type':'FeatureCollection','features':[{'type':'Feature','geometry':{
+            'type':'Polygon',
+            'coordinates':[[[-5e6, -1e6], [-4e6, 1e6], [-3e6, -1e6]]]
+          }}]}
+          console.log(poly_feature);
         // this.app.vector_edit.removeFeature(feature);
         // Call the function using linecoord
-        // this.app.vector_edit.addFeature()
+          //this.app.vector_edit.addFeature(poly_feature);
         }
       });
 
