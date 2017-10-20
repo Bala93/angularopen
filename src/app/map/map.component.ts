@@ -36,7 +36,8 @@ export class MapComponent implements OnInit {
   getData;
   first_pass_length;
   windowsize;
-
+  lastdrawnfeatureid;
+  //collective_features = ol.Collection();
 
 
   constructor(private _httpService: HttpTestService) {
@@ -45,7 +46,8 @@ export class MapComponent implements OnInit {
   ngOnInit() {
     this.app = window["app"];
     this.windowsize = window.innerHeight;
-    console.log(this.windowsize);
+    //console.log(this.windowsize);
+    
   }
 
   ngAfterViewInit() {
@@ -53,12 +55,15 @@ export class MapComponent implements OnInit {
     setupOL('1055802', '1056090');
     initLayers();
     add_annotLayers();
+    this.lastdrawnfeatureid=0;
     // add_controls();
     set_draw_style();
     this.vector_edit_change();
     this.getpolygons();
     this.maponclick();
 
+    
+    
     //this.select = this.app.select;
 
     //var slidervalues = [0,128,256,512,1024,2048,4095];
@@ -84,39 +89,51 @@ export class MapComponent implements OnInit {
 
     // var devicevalue = (<HTMLInputElement>document.getElementById('modetype')).value;
     // var value;
-
+    var this_ = this;
     if (devicevalue !== 'None') {
       // console.log('In');
       this.draw = new ol.interaction.Draw({
-        source: this.app.vector_edit.getSource(),
+        features: this.app.editfeatures,
+        //source: this.app.vector_edit.getSource(),
         type: devicevalue,
         style: this.app.draw_style,
       });
 
+      var deletedfeatures=[];
+
       this.draw.on('drawend',function(evt){
         // console.log('End');
-        var feature   = evt.feature;
+        var feature = evt.feature;
         var geo_type  = feature.getGeometry().getType();
         if (geo_type == 'LineString'){
           var linecoord = feature.getGeometry().getCoordinates();
-          console.log(linecoord); 
-          // var poly = thickLineToPolygon(linecoord,20);
-          // poly.push(poly[0]);
+          //console.log(linecoord); 
+          var poly = thickLineToPolygon(linecoord,20);
+          poly.push(poly[0]);
           // var feature1 = new ol.Feature({
           //   geometry: new ol.geom.Polygon(poly)
           // })
           // console.log(feature1);
-          var poly_feature = {'type':'FeatureCollection','features':[{'type':'Feature','geometry':{
-            'type':'Polygon',
-            'coordinates':[[[-5e6, -1e6], [-4e6, 1e6], [-3e6, -1e6]]]
-          }}]}
-          console.log(poly_feature);
+          // var poly_feature = {'type':'Feature','geometry':{
+          //   'type':'Polygon',
+          //   'coordinates':poly
+          // }}
+          //console.log(poly_feature);
         // this.app.vector_edit.removeFeature(feature);
         // Call the function using linecoord
           //this.app.vector_edit.addFeature(poly_feature);
+          var polyfeature = new ol.Feature(new ol.geom.Polygon([poly]));
+          polyfeature.setId(this_.lastdrawnfeatureid++);
+          this_.app.vector_edit.getSource().addFeature(polyfeature);
+          //console.log("feature id : "  + feature.getId())
+          
+          //this_.app.vector_edit.getSource().removeFeature(feature);
+          //this_.app.vector_edit.getSource().removeFeature(feature);
+          // this_.app.vector_edit.getSource().addFeature(poly_feature);
         }
+        
       });
-
+      
       this.app.map.addInteraction(this.draw);
     }
 

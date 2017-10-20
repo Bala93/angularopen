@@ -2,12 +2,23 @@ function add_annotLayers(){
 
     var app = window.app;
 
+    app.editfeatures =  new ol.Collection();
+    
+
     var source_edit = new ol.source.Vector({
         wrapX: false,
-        features: (new ol.format.GeoJSON()).readFeatures({'type': 'FeatureCollection', 'features': []})
+        features:app.editfeatures,
+        //(new ol.format.GeoJSON()).readFeatures({'type': 'FeatureCollection', 'features': []})
       });
+      
+      
+    var modify = new ol.interaction.Modify({
+        features: app.editfeatures
+    });
+
     
-    vector_edit = new ol.layer.Vector({
+
+  var vector_edit = new ol.layer.Vector({
         source: source_edit,
         style: new ol.style.Style({
           fill: new ol.style.Fill({
@@ -28,7 +39,7 @@ function add_annotLayers(){
         })
     });
 
-    vector_data = new ol.layer.Vector({
+  var vector_data = new ol.layer.Vector({
         source : new ol.source.Vector({
         wrapX: false,
         }),
@@ -51,7 +62,7 @@ function add_annotLayers(){
       });
 
 
-    vector_deletions = new ol.layer.Vector({
+  var  vector_deletions = new ol.layer.Vector({
         source: new ol.source.Vector({wrapX:false}),
         visible:false,
         style: new ol.style.Style({
@@ -75,10 +86,12 @@ function add_annotLayers(){
     app.vector_edit = vector_edit;
     app.vector_data = vector_data;
     app.vector_deletions = vector_deletions;
+
     app.map.addLayer(app.vector_edit);
     app.map.addLayer(app.vector_data);
     app.map.addLayer(app.vector_deletions);
 
+    app.map.addInteraction(modify);
 }
 
 function set_draw_style(){
@@ -141,6 +154,7 @@ var thickLineToPolygon = (function () {
     k2 = (b2[1]-a2[1])/(b2[0]-a2[0]);
     
     if(k1===k2) return;
+    if(!isFinite(k1) || !isFinite(k2)) return;
     
     m1 = a1[1] - k1*a1[0];
     m2 = a2[1] - k2*a2[0];

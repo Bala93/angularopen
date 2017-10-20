@@ -133,6 +133,54 @@ function createsliders(){
     });
 
 
+    var range_trans_nissl = $("#range_transparency_nissl");
+    range_trans_nissl.ionRangeSlider({
+        type: "single",
+        min: 0,
+        max: 1,
+        from: 0.5,
+        step: 0.02,
+        keyboard: true,
+        onStart: function (data) {
+            //console.log("onStart");
+        },
+        onChange: function (data) {
+            //console.log("onChange");
+        },
+        onFinish: function (data) {
+            trans_nissl = data.from;
+            app.layers[0].setOpacity(trans_nissl);
+            //      console.log("onFinish: " + data.from);
+        },
+        onUpdate: function (data) {
+            //console.log("onUpdate");
+        }
+    });
+
+    var range_trans_fluo = $("#range_transparency_fluo");
+    range_trans_fluo.ionRangeSlider({
+        type: "single",
+        min: 0,
+        max: 1,
+        from: 0.5,
+        step: 0.05,
+        keyboard: true,
+        onStart: function (data) {
+            //console.log("onStart");
+        },
+        onChange: function (data) {
+            //console.log("onChange");
+        },
+        onFinish: function (data) {
+            trans_fluo = data.from;
+            //app.trans_fluo = trans_fluo;
+            app.layers[1].setOpacity(trans_fluo);
+            //      console.log("onFinish: " + data.from);
+        },
+        onUpdate: function (data) {
+            //console.log("onUpdate");
+        }
+    });
 
 
 }
