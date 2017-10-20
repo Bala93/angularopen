@@ -11,6 +11,7 @@ declare function add_annotLayers();
 // declare function add_controls();
 declare function set_draw_style();
 declare function thickLineToPolygon(LineString:any,thickness:any);
+declare function createwidthslider();
 // declare function 
 
 
@@ -58,6 +59,7 @@ export class MapComponent implements OnInit {
     this.lastdrawnfeatureid=0;
     // add_controls();
     set_draw_style();
+    createwidthslider();
     this.vector_edit_change();
     this.getpolygons();
     this.maponclick();

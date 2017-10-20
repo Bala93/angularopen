@@ -102,7 +102,7 @@ draw_style = new ol.style.Style({
     }),
     stroke: new ol.style.Stroke({
       color: '#ff00ff',
-      width: 2
+      width: 4
     }),
     image: new ol.style.Circle({
       radius: 4,
