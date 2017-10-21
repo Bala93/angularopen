@@ -90,8 +90,8 @@ function add_annotLayers(){
     app.map.addLayer(app.vector_edit);
     app.map.addLayer(app.vector_data);
     app.map.addLayer(app.vector_deletions);
-
-    app.map.addInteraction(modify);
+    app.modify = modify;
+    // app.map.addInteraction(modify);
 }
 
 function set_draw_style(){

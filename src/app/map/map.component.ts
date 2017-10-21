@@ -38,6 +38,7 @@ export class MapComponent implements OnInit {
   first_pass_length;
   windowsize;
   lastdrawnfeatureid;
+  // draw_line_slider = false;
   //collective_features = ol.Collection();
 
 
@@ -63,7 +64,7 @@ export class MapComponent implements OnInit {
     this.vector_edit_change();
     this.getpolygons();
     this.maponclick();
-
+    // this.draw_line_slider = false;
     
     
     //this.select = this.app.select;
@@ -147,6 +148,7 @@ export class MapComponent implements OnInit {
     var this_ = this;
 
     this.app.map.on('click', function (evt) {
+      console.log("Clicked");
       //  if (evt.dragging) return;
       //  if (intSelect.value!='Delete') return;
       var selectvalue = (<HTMLInputElement>document.getElementById('modetype')).value;
@@ -191,9 +193,18 @@ export class MapComponent implements OnInit {
   //Events  
   onChangeGeometry(deviceValue) {
     this.geom_type = deviceValue;
+    console.log(deviceValue);
+    // if (this.geom_type == 'LineString'){
+    //   // this.draw_line_slider = true;
+    //   console.log("Line in")
+    // }
+    // else{
+    //   this.draw_line_slider = false;
+    // }
     this.app.map.removeInteraction(this.draw);
     // this.app.map.removeInteraction(this.select);
     this.addInteraction(deviceValue);
+    
   }
 
   onchangeMode(mode) {
@@ -201,19 +212,30 @@ export class MapComponent implements OnInit {
     if (mode == "draw") {
       //  this.app.map.removeInteraction(this.select);
       this.drawtype = true;
+      // this.draw_line_slider = false;
       this.addInteraction(this.geom_type);
     }
     if (mode == "view") {
       this.app.map.removeInteraction(this.draw);
       // this.app.map.removeInteraction(this.select);
       this.drawtype = false;
-
+      this.app.map.removeInteraction(this.app.modify);
+      // this.draw_line_slider = false;
     }
     if (mode == "delete") {
       this.app.map.removeInteraction(this.draw);
+      this.app.map.removeInteraction(this.app.modify);
       // this.app.map.addInteraction(this.select);  
       this.drawtype = false;
+      // this.draw_line_slider = false;
     }
+
+    if (mode == "modify"){
+      this.app.map.removeInteraction(this.app.draw);
+      this.app.map.addInteraction(this.app.modify);
+      this.drawtype = false;
+    }
+
 
   }
 

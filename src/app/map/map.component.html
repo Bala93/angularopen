@@ -95,6 +95,7 @@
                 <select class="form-control" style="cursor:pointer;" id="modetype" style="margin-top:30px; " (change)="onchangeMode($event.target.value)">
                     <option value="view">View</option>
                     <option value="draw">Draw</option>
+                    <option value="modify">Modify</option>
                     <option value="delete">Delete</option>
                 </select>
                 <select  class="form-control" style="cursor:pointer;" id="type"  style="margin-top:20px;"  *ngIf="drawtype"  (change)="onChangeGeometry($event.target.value)">
@@ -102,9 +103,9 @@
                     <option value="LineString">LineString</option>
                     <option value="Polygon">Polygon</option>
                 </select>
-
+            
+                <!-- <input *ngIf="draw_line_slider" type="text" id="line_width" name="" value=""/> -->
                 <input type="text" id="line_width" name="" value=""/>
-
 
                 <div class="row" style="margin-top:15px" > 
                   <div class="col-md-4 col-md-offset-2">
