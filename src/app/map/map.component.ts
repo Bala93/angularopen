@@ -57,7 +57,8 @@ export class MapComponent implements OnInit {
     setupOL('1055802', '1056090');
     initLayers();
     add_annotLayers();
-    this.lastdrawnfeatureid=0;
+    // this can be added by assigning the length of first pass polygons.
+    // this.lastdrawnfeatureid=0;
     // add_controls();
     set_draw_style();
     createwidthslider();
