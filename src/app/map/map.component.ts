@@ -126,7 +126,7 @@ export class MapComponent implements OnInit {
         // Call the function using linecoord
           //this.app.vector_edit.addFeature(poly_feature);
           var polyfeature = new ol.Feature(new ol.geom.Polygon([poly]));
-          polyfeature.setId(this_.lastdrawnfeatureid++);
+          // polyfeature.setId(this_.lastdrawnfeatureid++);
           this_.app.vector_edit.getSource().addFeature(polyfeature);
           //console.log("feature id : "  + feature.getId())
           
