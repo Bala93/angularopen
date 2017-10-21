@@ -12,6 +12,7 @@ declare function add_annotLayers();
 declare function set_draw_style();
 declare function thickLineToPolygon(LineString:any,thickness:any);
 declare function createwidthslider();
+declare function annotWindow();
 // declare function 
 
 
@@ -37,6 +38,7 @@ export class MapComponent implements OnInit {
   getData;
   first_pass_length;
   windowsize;
+  // annotwindow = true;
   // lastdrawnfeatureid;
   // draw_line_slider = false;
   //collective_features = ol.Collection();
@@ -57,6 +59,7 @@ export class MapComponent implements OnInit {
     setupOL('1055802', '1056090');
     initLayers();
     add_annotLayers();
+    annotWindow();
     // this can be added by assigning the length of first pass polygons.
     // this.lastdrawnfeatureid=0;
     // add_controls();
@@ -65,6 +68,7 @@ export class MapComponent implements OnInit {
     this.vector_edit_change();
     this.getpolygons();
     this.maponclick();
+    
     // this.draw_line_slider = false;
     
     
@@ -131,7 +135,7 @@ export class MapComponent implements OnInit {
           this_.app.vector_edit.getSource().addFeature(polyfeature);
           //console.log("feature id : "  + feature.getId())
           
-          //this_.app.vector_edit.getSource().removeFeature(feature);
+          this_.app.vector_edit.getSource().removeFeature(feature);
           //this_.app.vector_edit.getSource().removeFeature(feature);
           // this_.app.vector_edit.getSource().addFeature(poly_feature);
         }
@@ -363,6 +367,10 @@ export class MapComponent implements OnInit {
     // this.app.map.getView().setZoom(1);
     // this.app.map.getView().setCenter([554/2,-554/2]);
   }
+
+  // showAnnot(){
+  //   this.annotwindow = !(this.annotwindow);
+  // }
 
   // Catch the checkbox state -- firstpass
   groundtruth(event) {

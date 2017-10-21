@@ -145,4 +145,15 @@ function setupOL(secidx_nis, secidx_fluo) {
 
 	}
 }
+function annotWindow(){
+
+	$("#annotstate").click(function(){
+		$("#annotwindow").toggle();
+	});
+
+}
+
+
+
+
 
