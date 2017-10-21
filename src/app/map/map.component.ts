@@ -37,7 +37,7 @@ export class MapComponent implements OnInit {
   getData;
   first_pass_length;
   windowsize;
-  lastdrawnfeatureid;
+  // lastdrawnfeatureid;
   // draw_line_slider = false;
   //collective_features = ol.Collection();
 
