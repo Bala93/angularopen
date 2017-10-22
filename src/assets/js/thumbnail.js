@@ -10,10 +10,18 @@ function thumbnail_init(urls, secids_nis, secids_fluo) {
             secid_nis = secids_nis[i] != undefined ? secids_nis[i] : 0;
             secid_fl = secids_fluo[i] != undefined ? secids_fluo[i] : 0;
             evt = '"changesection(' + secid_nis + ',' + secid_fl + ')"';
+            // console.log(urls[i]);
+            // console.log(secid_nis);
+            // var sliceno_temp = urls[i].split('/')[]
+            var sliceno = urls[i].split('/')[3].split('_')[3].split('.')[0];
+            console.log(urls[i]);
             if (i == 13)
-                element = '<div><img id = nis_' + secid_nis + ' class = "highlighted" data-lazy= "http://mouse.brainarchitecture.org' + urls[i] + '" onclick =' + evt + '/></div>'
-            else
-                element = '<div><img id = nis_' + secid_nis  + ' data-lazy= "http://mouse.brainarchitecture.org' + urls[i] + '" onclick =' + evt + '/></div>'
+                element = '<div>'+sliceno+'<img id = nis_' + secid_nis + ' class = "highlighted" data-lazy= "http://mouse.brainarchitecture.org' + urls[i] + '" onclick =' + evt + '/></div>'
+            else{
+                
+                element = '<div>'+sliceno+'<img id = nis_' + secid_nis  + ' data-lazy= "http://mouse.brainarchitecture.org' + urls[i] + '" onclick =' + evt + '/></div>'
+            }
+                
         }
         innerhtml += element;
         // document.getElementById('thumbnail').innerHTML += element;
