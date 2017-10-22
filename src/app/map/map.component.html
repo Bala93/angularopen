@@ -83,7 +83,7 @@
                   <span  style="cursor:move" class="glyphicon glyphicon-screenshot "></span>
                 </button>
               </div>
-        </div>
+        </div>  
       
         <div class="col-md-12">
           <div class="col-md-2"  style=" background-color:black;">
@@ -110,10 +110,10 @@
                 <input type="text" id="line_width" name="" value=""/>
 
                 <div class="row" style="margin-top:15px" > 
-                  <div class="col-md-4 col-md-offset-2">
-                    <span class="badge" >Mouse Position</span>
+                  <div class="col-md-4 col-md-offset-2" id="mouse-position">
+                    <!-- <span class="badge" >Mouse Position</span>
                     <br>
-                    <span class="badge"style="margin-top:15px" >xxxxxxxxxx</span>
+                    <span class="badge"style="margin-top:15px" id="mouse-position"></span> -->
                   </div>
                 </div>
                 <div>
@@ -148,7 +148,12 @@
             
               <div id="target"  class="map" style="position:inherit; height:450px"></div>
           </div>
-          <div class="col-md-12"  >
+          <div id = "sagittal" class = "col-md-2" >
+              <div id = "sagittal_pos">
+                <img src="../assets/img/blended_sag.png" alt="sagittal">
+              </div>
+          </div>
+          <div class="col-md-10"  >
             <app-thumbnail id = "filmstrip" style="padding:5px" ></app-thumbnail>
           </div>
          

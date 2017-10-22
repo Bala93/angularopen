@@ -153,6 +153,31 @@ function annotWindow(){
 
 }
 
+function sagittal_localize(){
+	// var nslices = app.nslices;
+	// var slice_no = 13;
+	// $('#sagittal_pos').css('left',parseFloat(slice_no)/nslices * 180+'px');
+	$('#sagittal').click(function (evt) {
+		// var app = window.app;
+		var nslices = app.nslices;
+		x = evt.pageX - $(this).offset().left;
+		$('.regular').slick('slickGoTo',x/180*nslices);
+	});
+}
+
+// function mapPosition(){
+// 	var app = window.app;
+
+// 	var mousePositionControl = new app.MousePosition({
+// 		coordinateFormat: ol.coordinate.createStringXY(1),
+// 		projection: 'pixels',
+// 		className: 'custom-mouse-position',
+// 		target: document.getElementById('mouse-position'),
+// 		undefinedHTML: '&nbsp;'
+// 	});
+
+// }
+
 
 
 

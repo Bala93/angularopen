@@ -13,6 +13,8 @@ declare function set_draw_style();
 declare function thickLineToPolygon(LineString:any,thickness:any);
 declare function createwidthslider();
 declare function annotWindow();
+declare function mapPosition();
+declare function sagittal_localize();
 // declare function 
 
 
@@ -60,6 +62,8 @@ export class MapComponent implements OnInit {
     initLayers();
     add_annotLayers();
     annotWindow();
+  
+    // mapPosition();
     // this can be added by assigning the length of first pass polygons.
     // this.lastdrawnfeatureid=0;
     // add_controls();
@@ -68,7 +72,7 @@ export class MapComponent implements OnInit {
     this.vector_edit_change();
     this.getpolygons();
     this.maponclick();
-    
+    sagittal_localize();  
     // this.draw_line_slider = false;
     
     
@@ -325,6 +329,7 @@ export class MapComponent implements OnInit {
       json_data = (new ol.format.GeoJSON()).readFeatures({ 'type': 'FeatureCollection', 'features': [] });
 
     this.first_pass_length = json_data.length;
+    this.app.first_pass_length = this.first_pass_length;    
     for (var i in json_data) {
 
       if (deleted_ids.indexOf(json_data[i].getId()) != -1) {

@@ -1,5 +1,7 @@
 function thumbnail_init(urls, secids_nis, secids_fluo) {
     var innerhtml = ''
+    var app = window.app;
+    app.nslices = urls.length;
     for (var i = 0; i < urls.length; i++) {
         if (urls[i] == undefined)
             // this highlighted is to show which one is loaded
