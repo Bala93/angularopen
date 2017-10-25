@@ -366,3 +366,28 @@ p {
   bottom: -135px;
   right: 8px;
 }
+
+#target .ol-zoom .ol-zoom-out {
+    margin-top: 204px;
+  }
+  #target .ol-zoomslider {
+    background-color: transparent;
+    top: 2.3em;
+  }
+
+  #target .ol-touch .ol-zoom .ol-zoom-out {
+    margin-top: 212px;
+  }
+  #target .ol-touch .ol-zoomslider {
+    top: 2.75em;
+  }
+
+  #target .ol-zoom-in.ol-has-tooltip:hover [role=tooltip],
+  #target .ol-zoom-in.ol-has-tooltip:focus [role=tooltip] {
+    top: 3px;
+  }
+
+  #target .ol-zoom-out.ol-has-tooltip:hover [role=tooltip],
+  #target .ol-zoom-out.ol-has-tooltip:focus [role=tooltip] {
+    top: 232px;
+}

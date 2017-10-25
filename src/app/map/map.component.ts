@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpTestService } from '../httpservice';
 import { HostListener } from "@angular/core";
+import {SliderModule} from 'primeng/primeng';
 
 import * as $ from "jquery";
 declare var ol: any;
@@ -15,6 +16,8 @@ declare function createwidthslider();
 declare function annotWindow();
 declare function mapPosition();
 declare function sagittal_localize();
+declare function create_zoom_slider();
+declare function createwidthslider();
 // declare function 
 
 
@@ -42,7 +45,7 @@ export class MapComponent implements OnInit {
   windowsize;
   // annotwindow = true;
   // lastdrawnfeatureid;
-  // draw_line_slider = false;
+  draw_line_slider = false;
   //collective_features = ol.Collection();
 
 
@@ -57,7 +60,7 @@ export class MapComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-
+    create_zoom_slider();
     setupOL('1055802', '1056090');
     initLayers();
     add_annotLayers();
@@ -118,6 +121,7 @@ export class MapComponent implements OnInit {
         var feature = evt.feature;
         var geo_type  = feature.getGeometry().getType();
         if (geo_type == 'LineString'){
+          this.draw_line_slider = true;
           var linecoord = feature.getGeometry().getCoordinates();
           //console.log(linecoord); 
           var poly = thickLineToPolygon(linecoord,20);
@@ -203,16 +207,17 @@ export class MapComponent implements OnInit {
   onChangeGeometry(deviceValue) {
     this.geom_type = deviceValue;
     console.log(deviceValue);
-    // if (this.geom_type == 'LineString'){
-    //   // this.draw_line_slider = true;
-    //   console.log("Line in")
-    // }
-    // else{
-    //   this.draw_line_slider = false;
-    // }
+    if (this.geom_type == 'LineString'){
+      this.draw_line_slider = true;
+      createwidthslider();
+    }
+    else{
+      this.draw_line_slider = false;
+    }
     this.app.map.removeInteraction(this.draw);
     // this.app.map.removeInteraction(this.select);
     this.addInteraction(deviceValue);
+
     
   }
 
@@ -357,6 +362,9 @@ export class MapComponent implements OnInit {
 
   }
 
+  onRangeChanged(evt){
+    console.log(evt.startValue);
+  }
 
 
 

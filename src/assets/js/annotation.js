@@ -219,3 +219,9 @@ var thickLineToPolygon = (function () {
   
   return me;
 }());
+
+// function line_thickness(){
+
+//   $('#line_width').
+// }
+

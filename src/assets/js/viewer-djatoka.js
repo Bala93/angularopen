@@ -165,6 +165,12 @@ function sagittal_localize(){
 	});
 }
 
+function create_zoom_slider(){
+	// var app = window.app;
+	// zoomslider = new ol.control.ZoomSlider();
+	// app.map.addControl(zoomslider);
+}
+
 // function mapPosition(){
 // 	var app = window.app;
 

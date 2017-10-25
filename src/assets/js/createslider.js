@@ -187,10 +187,10 @@ function createsliders(){
 
 function createwidthslider(){
         var range_red = $('#line_width');
-        
+        console.log("in");
         range_red.ionRangeSlider({
         //$("#range_cnt_red").ionRangeSlider({
-        type: "double",
+        type: "single",
         min: 1,
         max: 10,
         from: 2,

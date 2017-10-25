@@ -49,27 +49,28 @@ export class ThumbnailComponent implements OnInit {
 
   extract_fluo_tnails() {
 
-    var tmplist = this.slide_array["F"];
+    var tmplist = this.slide_array["N"];
     var tmpslides = [];
     var secids_nissl = [];
     var secids_fluo = [];
     for (var ii = 0; ii < tmplist.length; ++ii) {
-      tmpslides[tmplist[ii][0]] = tmplist[ii][1];
+      
       secids_nissl[tmplist[ii][0]] = tmplist[ii][2];
     }
     // console.log(tmpslides);
     // display thumbnail down
-    this.slide_out = tmpslides;
+    
     // ids for nissl to refresh map
     this.sectionids_nissl = secids_nissl;
 
-    tmplist = this.slide_array["N"];
+    tmplist = this.slide_array["F"];
     for (var ii = 0; ii < tmplist.length; ++ii) {
+      tmpslides[tmplist[ii][0]] = tmplist[ii][1];
       secids_fluo[tmplist[ii][0]] = tmplist[ii][2];
     }
     // ids for flouro to refresh map
     this.sectionids_fluo = secids_fluo;
-
+    this.slide_out = tmpslides;
     // for(var ii=0;ii<tmplist.length;++ii) {
     //   // this.slides.push('<div><img data-lazy = "http://mouse.brainarchitecture.org" + tmplist[ii][1]/></div>');
     //   this.slides.push("Hai")
