@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpTestService } from '../httpservice';
 import { HostListener } from "@angular/core";
-import {SliderModule} from 'primeng/primeng';
+//import {SliderModule} from 'primeng/primeng';
 
 import * as $ from "jquery";
 declare var ol: any;

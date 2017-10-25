@@ -4,7 +4,7 @@ import { RouterModule} from "@angular/router";
 import { HttpModule } from '@angular/http';
 import { MatSliderModule} from '@angular/material/';
 // import {Ng2SliderComponent} from 'ng2-slider-component';
-import {SliderModule} from 'primeng/primeng';
+//import {SliderModule} from 'primeng/primeng';
 
 import { rootRouterConfig } from './route';
 import { AppComponent } from './app.component';
@@ -24,7 +24,7 @@ import { RangeslideComponent } from './rangeslide/rangeslide.component';
   imports: [
     BrowserModule,
     HttpModule,
-    SliderModule,
+    //SliderModule,
     // MatSliderModule,
     RouterModule.forRoot(rootRouterConfig, { }),
     // SlickModule.forRoot(),
