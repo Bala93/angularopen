@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Input,Output,EventEmitter } from '@angular/core';
 import { HttpTestService } from '../httpservice';
 import { HostListener } from "@angular/core";
 //import {SliderModule} from 'primeng/primeng';
+import {MatSliderModule,MatSliderChange} from '@angular/material';
 
 import * as $ from "jquery";
 declare var ol: any;
@@ -17,7 +18,7 @@ declare function annotWindow();
 declare function mapPosition();
 declare function sagittal_localize();
 declare function create_zoom_slider();
-declare function createwidthslider();
+// declare function createwidthslider();
 // declare function 
 
 
@@ -52,6 +53,7 @@ export class MapComponent implements OnInit {
   constructor(private _httpService: HttpTestService) {
   }
 
+  
   ngOnInit() {
     this.app = window["app"];
     this.windowsize = window.innerHeight;
@@ -71,7 +73,7 @@ export class MapComponent implements OnInit {
     // this.lastdrawnfeatureid=0;
     // add_controls();
     set_draw_style();
-    createwidthslider();
+    // createwidthslider();
     this.vector_edit_change();
     this.getpolygons();
     this.maponclick();
@@ -98,6 +100,13 @@ export class MapComponent implements OnInit {
     //     //console.log(window);
     //   initLayers();
     //   });  
+  }
+
+  changeWidth(evt){   
+    var width = evt.value;
+    var app = window['app'];
+    app.draw_style.getStroke().setWidth(width);
+    console.log(evt.value);
   }
 
   addInteraction(devicevalue) {
@@ -156,6 +165,11 @@ export class MapComponent implements OnInit {
 
   }
 
+
+
+
+
+
   maponclick() {
 
     var this_ = this;
@@ -209,7 +223,7 @@ export class MapComponent implements OnInit {
     console.log(deviceValue);
     if (this.geom_type == 'LineString'){
       this.draw_line_slider = true;
-      createwidthslider();
+      // createwidthslider();
     }
     else{
       this.draw_line_slider = false;
@@ -226,6 +240,7 @@ export class MapComponent implements OnInit {
     if (mode == "draw") {
       //  this.app.map.removeInteraction(this.select);
       this.drawtype = true;
+      this.draw_line_slider = false;
       // this.draw_line_slider = false;
       this.addInteraction(this.geom_type);
     }
@@ -234,6 +249,7 @@ export class MapComponent implements OnInit {
       // this.app.map.removeInteraction(this.select);
       this.drawtype = false;
       this.app.map.removeInteraction(this.app.modify);
+      this.draw_line_slider = false;
       // this.draw_line_slider = false;
     }
     if (mode == "delete") {
@@ -241,6 +257,7 @@ export class MapComponent implements OnInit {
       this.app.map.removeInteraction(this.app.modify);
       // this.app.map.addInteraction(this.select);  
       this.drawtype = false;
+      this.draw_line_slider = false;
       // this.draw_line_slider = false;
     }
 
@@ -248,6 +265,7 @@ export class MapComponent implements OnInit {
       this.app.map.removeInteraction(this.app.draw);
       this.app.map.addInteraction(this.app.modify);
       this.drawtype = false;
+      this.draw_line_slider = false;
     }
 
 

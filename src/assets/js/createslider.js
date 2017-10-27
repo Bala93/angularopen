@@ -185,36 +185,36 @@ function createsliders(){
 
 }
 
-function createwidthslider(){
-        var range_red = $('#line_width');
-        console.log("in");
-        range_red.ionRangeSlider({
-        //$("#range_cnt_red").ionRangeSlider({
-        type: "single",
-        min: 1,
-        max: 10,
-        from: 2,
-        step:1,
-        keyboard:true,
-        onStart: function (data) {
-                //consol.log(data);
-        },
-        onChange:  function (data) {
-                // console.log("change");
-        },
-        onFinish: function (data) {
-              var width = data.from;
-              console.log(width);
-              var app = window.app;
-              app.draw_style.getStroke().setWidth(width);
-        },
-        onUpdate : function (data) {
-                //console.log("update");
-        }
-        });
+// function createwidthslider(){
+//         var range_red = $('#line_width');
+//         console.log("in");
+//         range_red.ionRangeSlider({
+//         //$("#range_cnt_red").ionRangeSlider({
+//         type: "single",
+//         min: 1,
+//         max: 10,
+//         from: 2,
+//         step:1,
+//         keyboard:true,
+//         onStart: function (data) {
+//                 //consol.log(data);
+//         },
+//         onChange:  function (data) {
+//                 // console.log("change");
+//         },
+//         onFinish: function (data) {
+//               var width = data.from;
+//               console.log(width);
+//               var app = window.app;
+//               app.draw_style.getStroke().setWidth(width);
+//         },
+//         onUpdate : function (data) {
+//                 //console.log("update");
+//         }
+//         });
         
 
-}
+// }
 
 
 

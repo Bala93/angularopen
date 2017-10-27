@@ -18,6 +18,13 @@ import { RangeslideComponent } from './rangeslide/rangeslide.component';
 // import {  } from "@angular/";
 // declare var angular: any;
 
+import {SliderComponent}from './slider/slider.component';
+//import {MdSliderModule} from '@angular2-material/slider';
+//import { MdInputModule } from '@angular2-material/input';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+
+
 
 
 @NgModule({
@@ -25,7 +32,7 @@ import { RangeslideComponent } from './rangeslide/rangeslide.component';
     BrowserModule,
     HttpModule,
     //SliderModule,
-    // MatSliderModule,
+    MatSliderModule,
     RouterModule.forRoot(rootRouterConfig, { }),
     // SlickModule.forRoot(),
 
@@ -35,6 +42,7 @@ import { RangeslideComponent } from './rangeslide/rangeslide.component';
     MapComponent,
     ThumbnailComponent,
     RangeslideComponent,
+    SliderComponent,
     // myAppModule
   ],
   
