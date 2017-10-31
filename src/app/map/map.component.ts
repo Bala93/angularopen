@@ -18,6 +18,7 @@ declare function annotWindow();
 declare function mapPosition();
 declare function sagittal_localize();
 declare function create_zoom_slider();
+declare function brain_info_view();
 // declare function createwidthslider();
 // declare function 
 
@@ -65,6 +66,7 @@ export class MapComponent implements OnInit {
 
   ngAfterViewInit() {
     this.getbraininfo();
+    brain_info_view();
     create_zoom_slider();
     setupOL('1055802', '1056090');
     initLayers();

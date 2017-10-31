@@ -74,61 +74,7 @@
       </div>
       <app-thumbnail></app-thumbnail>
       </div> -->
-      <div id="info-content" class="panel_content" *ngIf="braininfo">
-          
-          <h3>{{braininfo.desc}}</h3>
-          
-          
-          <br>
-          <p><strong>Section:</strong>&nbsp;have to add <br>
-          <!-- Provide the y coordinate if it is not null -->
-          
-          (Bregma&nbsp;~
-          -0.52&nbsp;mm)
-          
-          
-          </p>
-          
-          
-          
-          <p></p>
-          <p><strong>Section thickness:</strong>&nbsp; {{braininfo.sectionThickness}} um</p> 
-          <p><strong>Imaging Method:</strong>&nbsp;{{braininfo.sectionThickness}}</p>
-          
-          <br>
-          
-          <p><strong>Metadata:</strong>&nbsp;</p>
-          <p></p><p>{{braininfo.notes}}</p><p></p>
-          
-          <br>
-          
-          
-          <p><strong>Injection region:</strong>&nbsp;
-          
-            {{braininfo.inj.region}}
-           
-          ({{braininfo.inj.x_coord}} mm, {{braininfo.inj.y_coord}} mm, {{braininfo.inj.z_coord}} mm)</p>
-          <p><strong>Tracer:</strong>&nbsp; {{braininfo.inj.tracer}}</p>
-          <br>
-          
-          
-          <p>Search <a href="http://brainarchitecture.org/text-mining" target="_blank">literature</a> for region RE (<a target="_blank" href="http://mouse.brainarchitecture.org/webapps/neuro_nlp/index.jsp?query='nucleus of reunions'&amp;docsPerPage=5&amp;category0=connectivity&amp;sentsPerDoc=5&amp;twoBrains=yes&amp;sentsToSort=1000">Link</a>)
-          </p>
-          <br>
-          <p><a href="/seriesbrowser/?region_filter=13273" target="_blank">Show</a> all injection series for region RE</p>
-          <br>
-          
-          
-          <p>View BAMS efferent projections in rat (<a href="http://brancusi.usc.edu/bkms/brain/show-conef.php?aidi=75&amp;publi=1" target="_blank">Link</a>)</p>
-          <p>View BAMS afferent projections in rat (<a href="http://brancusi.usc.edu/bkms/brain/show-conaf.php?aidi=75&amp;publi=1" target="_blank">Link</a>)</p>
-          
-          <br>
-          
-          
-          
-          <iframe src="http://www.youtube.com/embed/rUu33QHa6fM?rel=0&amp;fs=1&amp;autoplay=1.replace(&quot;&amp;autoplay=1&quot;,&quot;&quot;)" width="380" height="325" frameborder="0" allowfullscreen=""></iframe>
-          
-          </div>
+      
 
 
 
@@ -136,9 +82,9 @@
         <div class="row">
           <div class="col-md-10">
             <!-- Have to handle this-->
-            <div><a id="home-trigger" class="trigger" href="/" style="min-width: 80px;">Home</a></div>
-            <div><a id="brain-index-trigger" class="trigger" href="/seriesbrowser" style="min-width: 80px;">Brain List</a></div>
-            <div><a id="info-trigger" class="trigger" href="#brain-info" style="min-width: 81px;">Brain Info</a></div>
+            <div class="col-md-2"><a id="home-trigger" class="trigger" href="/" >Home</a></div><br>
+            <div class="col-md-2" ><a id="brain-index-trigger" class="trigger" href="/seriesbrowser" >Brain List</a></div><br>
+            <div class="col-md-2"><button id="info-trigger" class="trigger" href="brain-info" >Brain Info</button></div>
           </div>
           <div class="col-md-2">
             <div id="zone">  
@@ -230,3 +176,62 @@
         </div>
       </div>
       
+
+      
+
+
+      <div style="display:none;position:fixed;z-index:1;margin-left:100px;margin-top:-70px;" id="info-content" class="panel_content " *ngIf="braininfo">
+          
+          <h3 style="color:white" >{{braininfo.desc}}</h3>
+          
+          
+          <br>
+          <p style="color:white" ><strong>Section:</strong>&nbsp;have to add <br>
+          <!-- Provide the y coordinate if it is not null -->
+          
+          (Bregma&nbsp;~
+          -0.52&nbsp;mm)
+          
+          
+          </p>
+          
+          
+          
+          <p></p>
+          <p style="color:white"><strong>Section thickness:</strong>&nbsp; {{braininfo.sectionThickness}} um</p> 
+          <p style="color:white"><strong>Imaging Method:</strong>&nbsp;{{braininfo.sectionThickness}}</p>
+          
+          <br>
+          
+          <p style="color:white"><strong>Metadata:</strong>&nbsp;</p>
+          <p style="color:white"></p><p style="color:white">{{braininfo.notes}}</p><p></p>
+          
+          <br>
+          
+          
+          <p style="color:white"><strong>Injection region:</strong>&nbsp;
+          
+            {{braininfo.inj.region}}
+           
+          ({{braininfo.inj.x_coord}} mm, {{braininfo.inj.y_coord}} mm, {{braininfo.inj.z_coord}} mm)</p>
+          <p style="color:white"><strong>Tracer:</strong>&nbsp; {{braininfo.inj.tracer}}</p>
+          <br>
+          
+          
+          <p style="color:white">Search <a href="http://brainarchitecture.org/text-mining" target="_blank">literature</a> for region RE (<a target="_blank" href="http://mouse.brainarchitecture.org/webapps/neuro_nlp/index.jsp?query='nucleus of reunions'&amp;docsPerPage=5&amp;category0=connectivity&amp;sentsPerDoc=5&amp;twoBrains=yes&amp;sentsToSort=1000">Link</a>)
+          </p>
+          <br>
+          <p style="color:white"><a href="/seriesbrowser/?region_filter=13273" target="_blank">Show</a> all injection series for region RE</p>
+          <br>
+          
+          
+          <p style="color:white">View BAMS efferent projections in rat (<a href="http://brancusi.usc.edu/bkms/brain/show-conef.php?aidi=75&amp;publi=1" target="_blank">Link</a>)</p>
+          <p style="color:white">View BAMS afferent projections in rat (<a href="http://brancusi.usc.edu/bkms/brain/show-conaf.php?aidi=75&amp;publi=1" target="_blank">Link</a>)</p>
+          
+          <br>
+          
+          
+          
+          <iframe src="http://www.youtube.com/embed/rUu33QHa6fM?rel=0&amp;fs=1&amp;autoplay=1.replace(&quot;&amp;autoplay=1&quot;,&quot;&quot;)" width="380" height="325" frameborder="0" allowfullscreen=""></iframe>
+          
+          </div>

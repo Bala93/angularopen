@@ -184,7 +184,19 @@ function create_zoom_slider(){
 
 // }
 
+function brain_info_view(){
 
+$( ".infotxt" ).children().css( "color", "red" );
+
+
+	$("#info-trigger").hover(function(){
+		$("#info-content").fadeIn();
+		
+	  },function(){
+		$("#info-content").fadeOut();
+
+	  })
+}
 
 
 
