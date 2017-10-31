@@ -1,4 +1,4 @@
-function thumbnail_init(urls, secids_nis, secids_fluo) {
+function thumbnail_init(urls, secids_nis, secids_fluo,bregmas) {
     var innerhtml = ''
     var app = window.app;
     app.nslices = urls.length;
@@ -15,11 +15,12 @@ function thumbnail_init(urls, secids_nis, secids_fluo) {
             // console.log(secid_nis);
             // var sliceno_temp = urls[i].split('/')[]
             var sliceno = urls[i].split('/')[3].split('_')[3].split('.')[0];
+            var bregma = bregmas[i] + '';
             if (i == 13)
-                element = '<div><center>'+sliceno+'</center><img id = nis_' + secid_nis + ' class = "highlighted" data-lazy= "http://mouse.brainarchitecture.org' + urls[i] + '" onclick =' + evt + '/></div>'
+                element = '<div><center>'+sliceno+'</center><center>'+ bregma+'</center><img id = nis_' + secid_nis + ' class = "highlighted" data-lazy= "http://mouse.brainarchitecture.org' + urls[i] + '" onclick =' + evt + '/></div>'
             else{
                 
-                element = '<div><center>'+sliceno+'</center><img id = nis_' + secid_nis  + ' data-lazy= "http://mouse.brainarchitecture.org' + urls[i] + '" onclick =' + evt + '/></div>'
+                element = '<div><center>'+sliceno+'</center><center>'+ bregma+'</center><img id = nis_' + secid_nis  + ' data-lazy= "http://mouse.brainarchitecture.org' + urls[i] + '" onclick =' + evt + '/></div>'
             }
                 
         }

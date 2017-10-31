@@ -1,7 +1,7 @@
 import { Component, OnInit, ElementRef, ChangeDetectionStrategy } from '@angular/core';
 import { HttpTestService } from '../httpservice';
 import { Observable } from "rxjs/Observable";
-declare function thumbnail_init(inp: any, secids_nis: any, secids_flu: any);
+declare function thumbnail_init(inp: any, secids_nis: any, secids_flu: any,bregmas:any);
 declare function thumbnail_load();
 
 @Component({
@@ -24,6 +24,7 @@ export class ThumbnailComponent implements OnInit {
   slide_out = [];
   sectionids_nissl = [];
   sectionids_fluo = [];
+  bregmas = [];
 
   constructor(private _httpService: HttpTestService) { }
 
@@ -33,8 +34,9 @@ export class ThumbnailComponent implements OnInit {
     this._httpService.getthumbnails().subscribe(
       data => {
       this.slide_array = data;
+        // console.log(this.slide_array);
         this.extract_fluo_tnails();
-        thumbnail_init(this.slide_out, this.sectionids_nissl, this.sectionids_fluo);
+        thumbnail_init(this.slide_out, this.sectionids_nissl, this.sectionids_fluo,this.bregmas);
         // console.log(this.slide_out);
         thumbnail_load();
         // this.slide_array.forEach
@@ -53,6 +55,8 @@ export class ThumbnailComponent implements OnInit {
     var tmpslides = [];
     var secids_nissl = [];
     var secids_fluo = [];
+    
+
     for (var ii = 0; ii < tmplist.length; ++ii) {
       
       secids_nissl[tmplist[ii][0]] = tmplist[ii][2];
@@ -67,7 +71,9 @@ export class ThumbnailComponent implements OnInit {
     for (var ii = 0; ii < tmplist.length; ++ii) {
       tmpslides[tmplist[ii][0]] = tmplist[ii][1];
       secids_fluo[tmplist[ii][0]] = tmplist[ii][2];
+      this.bregmas[tmplist[ii][0]] = tmplist[ii][3];
     }
+    // console.log(bregmas);
     // ids for flouro to refresh map
     this.sectionids_fluo = secids_fluo;
     this.slide_out = tmpslides;
