@@ -13,6 +13,11 @@ export class HttpTestService{
             .map(res=>res.json());
     }
 
+    getbraininfo():Observable<any>{
+        return this._http.get('http://mitradevel.cshl.org/webtools/seriesbrowser/getbraininfo/4618/')
+            .map(res=>res.json());
+    }
+
     postFeatures(params){
         console.log("Saving");
         return this._http.post('http://mitradevel.cshl.org/nisslapi/postdata/',params);

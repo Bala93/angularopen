@@ -44,6 +44,7 @@ export class MapComponent implements OnInit {
   getData;
   first_pass_length;
   windowsize;
+  braininfo;
   // annotwindow = true;
   // lastdrawnfeatureid;
   draw_line_slider = false;
@@ -62,6 +63,7 @@ export class MapComponent implements OnInit {
   }
 
   ngAfterViewInit() {
+    this.getbraininfo();
     create_zoom_slider();
     setupOL('1055802', '1056090');
     initLayers();
@@ -322,6 +324,14 @@ export class MapComponent implements OnInit {
 
   }
 
+  getbraininfo(){
+    this._httpService.getbraininfo().subscribe(
+      data =>{
+        this.braininfo = data;
+        console.log(this.braininfo);
+      });
+
+  }
 
   getpolygons() {
     this._httpService.getfirstpasspolygons().subscribe(
