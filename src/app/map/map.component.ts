@@ -45,6 +45,7 @@ export class MapComponent implements OnInit {
   first_pass_length;
   windowsize;
   braininfo;
+  
   // annotwindow = true;
   // lastdrawnfeatureid;
   draw_line_slider = false;

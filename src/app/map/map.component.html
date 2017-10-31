@@ -74,6 +74,62 @@
       </div>
       <app-thumbnail></app-thumbnail>
       </div> -->
+      <div id="info-content" class="panel_content" *ngIf="braininfo">
+          
+          <h3>{{braininfo.desc}}</h3>
+          
+          
+          <br>
+          <p><strong>Section:</strong>&nbsp;have to add <br>
+          <!-- Provide the y coordinate if it is not null -->
+          
+          (Bregma&nbsp;~
+          -0.52&nbsp;mm)
+          
+          
+          </p>
+          
+          
+          
+          <p></p>
+          <p><strong>Section thickness:</strong>&nbsp; {{braininfo.sectionThickness}} um</p> 
+          <p><strong>Imaging Method:</strong>&nbsp;{{braininfo.sectionThickness}}</p>
+          
+          <br>
+          
+          <p><strong>Metadata:</strong>&nbsp;</p>
+          <p></p><p>{{braininfo.notes}}</p><p></p>
+          
+          <br>
+          
+          
+          <p><strong>Injection region:</strong>&nbsp;
+          
+            {{braininfo.inj.region}}
+           
+          ({{braininfo.inj.x_coord}} mm, {{braininfo.inj.y_coord}} mm, {{braininfo.inj.z_coord}} mm)</p>
+          <p><strong>Tracer:</strong>&nbsp; {{braininfo.inj.tracer}}</p>
+          <br>
+          
+          
+          <p>Search <a href="http://brainarchitecture.org/text-mining" target="_blank">literature</a> for region RE (<a target="_blank" href="http://mouse.brainarchitecture.org/webapps/neuro_nlp/index.jsp?query='nucleus of reunions'&amp;docsPerPage=5&amp;category0=connectivity&amp;sentsPerDoc=5&amp;twoBrains=yes&amp;sentsToSort=1000">Link</a>)
+          </p>
+          <br>
+          <p><a href="/seriesbrowser/?region_filter=13273" target="_blank">Show</a> all injection series for region RE</p>
+          <br>
+          
+          
+          <p>View BAMS efferent projections in rat (<a href="http://brancusi.usc.edu/bkms/brain/show-conef.php?aidi=75&amp;publi=1" target="_blank">Link</a>)</p>
+          <p>View BAMS afferent projections in rat (<a href="http://brancusi.usc.edu/bkms/brain/show-conaf.php?aidi=75&amp;publi=1" target="_blank">Link</a>)</p>
+          
+          <br>
+          
+          
+          
+          <iframe src="http://www.youtube.com/embed/rUu33QHa6fM?rel=0&amp;fs=1&amp;autoplay=1.replace(&quot;&amp;autoplay=1&quot;,&quot;&quot;)" width="380" height="325" frameborder="0" allowfullscreen=""></iframe>
+          
+          </div>
+
 
 
       <div class="container-fulid">

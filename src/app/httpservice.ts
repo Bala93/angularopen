@@ -9,12 +9,12 @@ export class HttpTestService{
     constructor(private _http: Http){}
  
     getthumbnails():Observable<any>{
-        return this._http.get('http://mitradevel.cshl.org/webtools/seriesbrowser/getthumbnails/4618/')
+        return this._http.get('http://mitradevel.cshl.org/webtools/seriesbrowser/getthumbnails/4439/')
             .map(res=>res.json());
     }
 
     getbraininfo():Observable<any>{
-        return this._http.get('http://mitradevel.cshl.org/webtools/seriesbrowser/getbraininfo/4618/')
+        return this._http.get('http://mitradevel.cshl.org/webtools/seriesbrowser/getbraininfo/4439/')
             .map(res=>res.json());
     }
 
