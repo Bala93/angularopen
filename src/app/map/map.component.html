@@ -82,8 +82,8 @@
         <div class="row">
           <div class="col-md-10">
             <!-- Have to handle this-->
-            <div class="col-md-2"><a id="home-trigger" class="trigger" href="/" >Home</a></div><br>
-            <div class="col-md-2" ><a id="brain-index-trigger" class="trigger" href="/seriesbrowser" >Brain List</a></div><br>
+            <!-- <div class="col-md-2"><a id="home-trigger" class="trigger" href="/" >Home</a></div><br>
+            <div class="col-md-2" ><a id="brain-index-trigger" class="trigger" href="/seriesbrowser" >Brain List</a></div><br> -->
             <div class="col-md-2"><button id="info-trigger" class="trigger" href="brain-info" >Brain Info</button></div>
           </div>
           <div class="col-md-2">
@@ -182,11 +182,11 @@
 
       <div style="display:none;position:fixed;z-index:1;margin-left:100px;margin-top:-70px;" id="info-content" class="panel_content " *ngIf="braininfo">
           
-          <h3 style="color:white" >{{braininfo.desc}}</h3>
+          <h3 style="color:white" >{{braininfo.desc}} ({{braininfo.nSections}} sections)</h3>
           
           
           <br>
-          <p style="color:white" ><strong>Section:</strong>&nbsp;have to add <br>
+          <p style="color:white" ><strong>Section:</strong>&nbsp;{{braininfo.desc}}<br>
           <!-- Provide the y coordinate if it is not null -->
           
           (Bregma&nbsp;~
@@ -199,7 +199,7 @@
           
           <p></p>
           <p style="color:white"><strong>Section thickness:</strong>&nbsp; {{braininfo.sectionThickness}} um</p> 
-          <p style="color:white"><strong>Imaging Method:</strong>&nbsp;{{braininfo.sectionThickness}}</p>
+          <p style="color:white"><strong>Imaging Method:</strong>&nbsp;{{braininfo.imageMethod}}</p>
           
           <br>
           
@@ -221,12 +221,12 @@
           <p style="color:white">Search <a href="http://brainarchitecture.org/text-mining" target="_blank">literature</a> for region RE (<a target="_blank" href="http://mouse.brainarchitecture.org/webapps/neuro_nlp/index.jsp?query='nucleus of reunions'&amp;docsPerPage=5&amp;category0=connectivity&amp;sentsPerDoc=5&amp;twoBrains=yes&amp;sentsToSort=1000">Link</a>)
           </p>
           <br>
-          <p style="color:white"><a href="/seriesbrowser/?region_filter=13273" target="_blank">Show</a> all injection series for region RE</p>
+          <p style="color:white"><a href="/seriesbrowser/?region_filter={{braininfo.inj.id}}" target="_blank">Show</a> all injection series for region RE</p>
           <br>
           
           
-          <p style="color:white">View BAMS efferent projections in rat (<a href="http://brancusi.usc.edu/bkms/brain/show-conef.php?aidi=75&amp;publi=1" target="_blank">Link</a>)</p>
-          <p style="color:white">View BAMS afferent projections in rat (<a href="http://brancusi.usc.edu/bkms/brain/show-conaf.php?aidi=75&amp;publi=1" target="_blank">Link</a>)</p>
+          <p style="color:white">View BAMS efferent projections in rat (<a href="http://brancusi.usc.edu/bkms/brain/show-conef.php?aidi={{braininfo.inj.bamsId}}&amp;publi=1" target="_blank">Link</a>)</p>
+          <p style="color:white">View BAMS afferent projections in rat (<a href="http://brancusi.usc.edu/bkms/brain/show-conaf.php?aidi={{braininfo.inj.bamsId}}&amp;publi=1" target="_blank">Link</a>)</p>
           
           <br>
           
