@@ -19,6 +19,7 @@ declare function mapPosition();
 declare function sagittal_localize();
 declare function create_zoom_slider();
 declare function brain_info_view();
+declare function displayFeatureInfo(pixel:any);
 // declare function createwidthslider();
 // declare function 
 
@@ -171,7 +172,15 @@ export class MapComponent implements OnInit {
 
   }
 
+  maponmove(){
+    var this_ = this;
+    this.app.map.on('pointermove',function(evt){
+      if (evt.dragging) {return;}
+      var pixel = this.app.map.getEventPixel(evt.originalEvent);
+      displayFeatureInfo(pixel);	
+    });
 
+  }
 
 
 

@@ -1,3 +1,13 @@
+#tnailzone{
+width:120px;
+height:90px;
+opacity:0.4;
+position:absolute; 
+border:solid 2px; 
+border-color:yellow;
+display:block;
+}
+
 .infotxt{
 color:white;
 }

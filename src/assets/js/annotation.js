@@ -88,18 +88,51 @@ function add_annotLayers(){
         })
       })
     });
-    
+
+   var highlightStyle = new ol.style.Style({
+        stroke: new ol.style.Stroke({
+          color: '#f00',
+          width: 1
+        }),
+        fill: new ol.style.Fill({
+          color: 'rgba(255,0,0,0.1)'
+        }),
+        text: new ol.style.Text({
+          font: '12px Calibri,sans-serif',
+          fill: new ol.style.Fill({
+            color: '#000'
+          }),
+          stroke: new ol.style.Stroke({
+            color: '#f00',
+            width: 3
+          })
+        })
+      });
+
+
+
+    var featureOverlay = new ol.layer.Vector({
+	source:new ol.source.Vector(),
+	style : function(feature){
+	   highlightStyle.getText().setText(feature.get('name'));
+	   return highlightStyle;
+	}
+
+    });
+
+    var highlight;
     
     app.vector_edit = vector_edit;
     app.vector_data = vector_data;
     app.vector_deletions = vector_deletions;
-
+    app.featureOverlay = featureOverlay;
     app.map.addLayer(app.atlas_layer);
-
     app.map.addLayer(app.vector_edit);
     app.map.addLayer(app.vector_data);
     app.map.addLayer(app.vector_deletions);
+    app.map.addLayer(app.featureOverlay);
     app.modify = modify;
+    app.highlight = highlight;
     // app.map.addInteraction(modify);
 }
 
@@ -128,6 +161,39 @@ draw_style = new ol.style.Style({
   app.draw_style = draw_style;
 
 }
+
+
+function displayFeatureInfo(pixel){
+  var app = window.app;
+  var highlight = app.highlight;
+  var feature = app.map.forEachFeatureAtPixel(pixel,function(feature){
+	return feature;
+   });
+  var info  = document.getElementById('info');
+  if (feature){
+      info.innerHTML = feature.getId() + ':' + feature.get('name');
+   }
+  else{
+      info.innerHTML = '&nbsp';	
+   }
+  if (feature !== highlight){
+ 
+     if ( highlight){
+	featureOverlay.getSource().removeFeature(highlight);
+   } 
+     if (feature){
+	featureOverlay.getSource().addFeature(feature);	
+    }
+   highlight = feature;
+
+   }
+
+
+
+}
+
+
+
 
 // function add_controls(){
 //   var mousePositionControl = new ol.control.MousePosition({

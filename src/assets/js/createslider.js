@@ -184,6 +184,19 @@ function createsliders(){
     });
 
    $('#range_div_toggle').click(function() {$('#range_div').toggle()});
+   $('#atlas_toggle').click(function(){
+	var check = $('#atlas_toggle').attr('checked') == 'checked';
+	var app = window.app;
+	
+	if (check){
+	    app.atlas_layer.setVisible(true);
+
+	}
+	else{
+	    app.atlas_layer.setVisible(false);
+	}
+	
+	});
 
 }
 

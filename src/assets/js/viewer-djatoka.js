@@ -94,6 +94,33 @@ function setupOL(secidx_nis, secidx_fluo) {
 
 	});
 
+	app.map.on('moveend', function(evt) {
+            var map = evt.map;
+            var view = map.getView();
+            var extent = view.calculateExtent(map.getSize());
+
+	    left = extent[0];
+	    top_1 = extent[3];
+	    width = extent[2]-left;
+	    height = top_1 - extent[1];
+	    factor_x = 120.0/24000; //187.0/24000;
+	    factor_y = 90.0/18000; //150.0/18000;
+	    width_f =  factor_x*width;
+	    height_f = factor_y*height;
+	    left_f = left*factor_x;
+	    top_f =-top_1*factor_y;
+	    if ( (left_f < 0 && width_f > 187) || (top_f < 0 && height_f > 140 ) ){
+	        $('#tnailzone').css('display','none');
+	    }
+	    else
+	    {
+	        $('#tnailzone').css({'width':(width_f) + 'px','height':(height_f)+'px', 'left':(left_f)+'px', 'top':top_f+'px','display':'block'});
+	    }
+
+            //localStorage['last_extent'] = JSON.stringify(extent);
+            //localStorage['last_zoom'] = JSON.stringify(view.getZoom());
+        });
+
 	app.layers = [];
 
 
@@ -140,6 +167,25 @@ function setupOL(secidx_nis, secidx_fluo) {
 			});
 
 			app.map.setView(app.map_view);
+
+			app.map_view.on('change:resolution', function(evt) {
+			    var view = evt.target;
+			    var map = app.map;
+			    var extent = view.calculateExtent(map.getSize());
+			    //localStorage['last_extent'] = JSON.stringify(extent);
+			    //localStorage['last_zoom'] = JSON.stringify(view.getZoom());
+			    /*var center = viewState.center;
+			    var projection = viewState.projection;
+			    var pointResolution =
+				projection.getPointResolution(viewState.resolution, center);
+				*/
+			    var zoom  = evt.target.getZoom();
+			    if (zoom >= 5) {
+			    }
+			});
+
+
+
 		}
 
 
