@@ -1,4 +1,5 @@
 
+
 function createsliders(){
     var app = window.app;
     var slidersteps = [0];
@@ -182,6 +183,7 @@ function createsliders(){
         }
     });
 
+   $('#range_div_toggle').click(function() {$('#range_div').toggle()});
 
 }
 

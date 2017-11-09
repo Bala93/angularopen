@@ -84,18 +84,20 @@
             <!-- Have to handle this-->
             <!-- <div class="col-md-2"><a id="home-trigger" class="trigger" href="/" >Home</a></div><br>
             <div class="col-md-2" ><a id="brain-index-trigger" class="trigger" href="/seriesbrowser" >Brain List</a></div><br> -->
-            <div class="col-md-2"><button id="info-trigger" class="trigger" href="brain-info" >Brain Info</button></div>
+            <div class="col-md-2"><button id="info-trigger" class="trigger btn" href="brain-info" >Brain Info</button>
+                  <div id="mouse-position"></div>
+	    </div>
           </div>
           <div class="col-md-2">
             <div id="zone">  
-              <img id="imgdisp" src="/assets/img/notfound.jpg">
+              <img id="imgdisp" src="./assets/img/notfound.jpg">
             </div>
           </div>
         </div>  
       
         <div class="col-md-12">
           <div class="col-md-2"  style=" background-color:black;">
-            <button id="annotstate">  </button>
+            <button id="annotstate">Annotation</button>
             <!-- <div class="well" *ngIf="annotwindow" > -->
             <div class="well" id="annotwindow" style="display:none">
                 <div class="col-md-10 col-md-offset-1"  > 
@@ -125,13 +127,11 @@
                 <!-- <input type="text" id="varyzoom" name="" value=""/>5 -->
                 <!-- <input *ngIf = "draw_line_slider" type="text" id="line_width" name="" value=""/> -->
 
-                <div class="row" style="margin-top:15px" > 
-                  <div class="col-md-4 col-md-offset-2" id="mouse-position">
+                <!--div class="row" style="margin-top:15px" --> 
                     <!-- <span class="badge" >Mouse Position</span>
                     <br>
                     <span class="badge"style="margin-top:15px" id="mouse-position"></span> -->
-                  </div>
-                </div>
+                <!--/div-->
                 <div>
                     <ul class="list-group" style="margin-top: 15px">
                         <li class="list-group-item">
@@ -166,7 +166,7 @@
           </div>
           <div id = "sagittal" class = "col-md-2" >
               <div id = "sagittal_pos">
-                <img src="../assets/img/blended_sag.png" alt="sagittal">
+                <img src="./assets/img/blended_sag.png" alt="sagittal">
               </div>
           </div>
           <div class="col-md-10"  >
@@ -179,8 +179,7 @@
 
       
 
-
-      <div style="display:none;position:fixed;z-index:1;margin-left:100px;margin-top:-70px;" id="info-content" class="panel_content " *ngIf="braininfo">
+      <div style="display:none" id="info-content" class="panel_content " *ngIf="braininfo">
           
           <h3 style="color:white" >{{braininfo.desc}} ({{braininfo.nSections}} sections)</h3>
           

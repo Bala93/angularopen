@@ -16,6 +16,13 @@ function add_annotLayers(){
         features: app.editfeatures
     });
 
+
+    app.atlas_layer = new ol.layer.Vector( {
+	source: new ol.source.Vector({
+		wrapX: false,
+		})
+    });
+
     
 
   var vector_edit = new ol.layer.Vector({
@@ -86,6 +93,8 @@ function add_annotLayers(){
     app.vector_edit = vector_edit;
     app.vector_data = vector_data;
     app.vector_deletions = vector_deletions;
+
+    app.map.addLayer(app.atlas_layer);
 
     app.map.addLayer(app.vector_edit);
     app.map.addLayer(app.vector_data);

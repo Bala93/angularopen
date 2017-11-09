@@ -89,7 +89,7 @@ function setupOL(secidx_nis, secidx_fluo) {
 		pixelRatio: 1,
 		controls: ol.control.defaults({
 			attribution: false
-		}).extend(mousePositionControl),
+		}).extend([mousePositionControl]),
 		logo: false
 
 	});
@@ -132,7 +132,7 @@ function setupOL(secidx_nis, secidx_fluo) {
 		if (app.map_view == null) {
 
 			app.map_view = new ol.View({
-				zoom: 1,
+				zoom: 2,
 				maxZoom: meta.levels - 1,
 				projection: proj,
 				center: imgCenter,

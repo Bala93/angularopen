@@ -1,6 +1,8 @@
-<div calss="col-md-2" >
-    
-<b style="color:whitesmoke" >Intensity range:</b>
+<div class="col-md-12" >
+
+<button id="range_div_toggle"> <i class="fa fa-bars"></i></button>
+<div id="range_div" style="display:none">    
+<b style="color:whitesmoke" >Fluo intensity range:</b>
 <input type="text" id="range_cnt_red" name="" value="" />
 <input type="text" id="range_cnt_green" name="" value="" />
 <input type="text" id="range_cnt_blue" name="" value="" />
@@ -9,9 +11,10 @@
 <br>
 <input type="button" class="btn btn-primary" id="resamp" (click) = "resample()" value="Resample" />
 <input type="button" class="btn btn-primary" id="resampdefault" (click) = "default()" value="Default" />
-
+</div>
+Nissl opacity:
 <input type="text" id="range_transparency_nissl" name="" value=""/>
-
+Fluo opactiy:
 <input type="text" id="range_transparency_fluo" name="" value=""/>
 
 </div>

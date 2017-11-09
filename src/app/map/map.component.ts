@@ -65,10 +65,11 @@ export class MapComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    this.getbraininfo();
+    this.getbraininfo(4439); //FIXME
     brain_info_view();
     create_zoom_slider();
-    setupOL('1055802', '1056090');
+    //setupOL('1055802', '1056090');
+    setupOL('967462', '967732');
     initLayers();
     add_annotLayers();
     annotWindow();
@@ -327,8 +328,8 @@ export class MapComponent implements OnInit {
 
   }
 
-  getbraininfo(){
-    this._httpService.getbraininfo().subscribe(
+  getbraininfo(seriesid){
+    this._httpService.getbraininfo(seriesid).subscribe(
       data =>{
         this.braininfo = data;
         console.log(this.braininfo);

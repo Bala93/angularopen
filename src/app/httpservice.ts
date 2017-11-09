@@ -13,8 +13,8 @@ export class HttpTestService{
             .map(res=>res.json());
     }
 
-    getbraininfo():Observable<any>{
-        return this._http.get('http://mitradevel.cshl.org/webtools/seriesbrowser/getbraininfo/4439/')
+    getbraininfo(seriesid):Observable<any>{
+        return this._http.get('http://mitradevel.cshl.org/webtools/seriesbrowser/getbraininfo/'+seriesid+'/')
             .map(res=>res.json());
     }
 
