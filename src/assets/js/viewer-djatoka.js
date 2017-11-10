@@ -329,7 +329,6 @@ function setupOL() { //secidx_nis, secidx_fluo) {
 				view.setCenter(imgCenter);
 			});
 
-
 		}
 
 	}

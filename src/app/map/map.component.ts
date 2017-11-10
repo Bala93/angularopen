@@ -3,7 +3,7 @@ import { HttpTestService } from '../httpservice';
 import { HostListener } from "@angular/core";
 import {Router,ActivatedRoute,Params} from '@angular/router';
 //import {SliderModule} from 'primeng/primeng';
-import {MatSliderModule,MatSliderChange} from '@angular/material';
+import {MatSliderModule,MatSliderChange,MatSelect,MatOption} from '@angular/material';
 
 
 import * as $ from "jquery";

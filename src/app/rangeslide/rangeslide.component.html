@@ -1,6 +1,6 @@
 <div class="col-md-12" >
 
-<button id="range_div_toggle"> <i class="fa fa-bars"></i></button>
+<button class="btn btn-default" id="range_div_toggle"> <i class="fa fa-bars"></i></button>
 <div id="range_div" style="display:none">    
 <b style="color:whitesmoke" >Fluo intensity range:</b>
 <input type="text" id="range_cnt_red" name="" value="" />
@@ -12,9 +12,9 @@
 <input type="button" class="btn btn-primary" id="resamp" (click) = "resample()" value="Resample" />
 <input type="button" class="btn btn-primary" id="resampdefault" (click) = "default()" value="Default" />
 </div>
-Nissl opacity:
+ <b style="color:#666600" >Nissl opacity:</b>
 <input type="text" id="range_transparency_nissl" name="" value=""/>
-Fluo opactiy:
+<b style="color:#666600" >Fluo opactiy:</b>
 <input type="text" id="range_transparency_fluo" name="" value=""/>
 <input id = "atlas_toggle" type="checkbox" checked/>
 </div>

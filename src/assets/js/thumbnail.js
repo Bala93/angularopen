@@ -25,6 +25,7 @@ function thumbnail_init(urls, secids_nis, secids_fluo,bregmas,nisslstart, fluost
             //if (parseInt(sliceno) == 90) { //FIXME: update this
 	    if(secid_nis==nisslstart || secid_fl==fluostart) {
                 element = '<div><center>'+sliceno+'</center><center>'+ bregma+'</center><img id = nis_' + secid_nis + ' class = "highlighted" data-lazy= "http://mouse.brainarchitecture.org' + urls[i] + '" onclick =' + evt + '/></div>';
+
 		contexturl = urls[i];
 		contextsec = sliceno;
 
@@ -34,7 +35,7 @@ function thumbnail_init(urls, secids_nis, secids_fluo,bregmas,nisslstart, fluost
 	    }
 	    else{
                 
-                element = '<div><center>'+sliceno+'</center><center>'+ bregma+'</center><img id = nis_' + secid_nis  + ' data-lazy= "http://mouse.brainarchitecture.org' + urls[i] + '" onclick =' + evt + '/></div>'
+                element = '<div style="color:whitesmoke"><img id = nis_' + secid_nis  + ' data-lazy= "http://mouse.brainarchitecture.org' + urls[i] + '" onclick =' + evt + '/><center>'+ bregma+'</center></div>'
             }
                 
         }

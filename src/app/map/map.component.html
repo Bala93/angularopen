@@ -76,109 +76,108 @@
       </div> -->
       
 
-
-
       <div class="container-fluid">
-        <div class="row">
-          <div class="col-md-10">
-            <!-- Have to handle this-->
-            <!-- <div class="col-md-2"><a id="home-trigger" class="trigger" href="/" >Home</a></div><br>
-            <div class="col-md-2" ><a id="brain-index-trigger" class="trigger" href="/seriesbrowser" >Brain List</a></div><br> -->
-            <div class="col-md-2"><button id="info-trigger" class="trigger btn" href="brain-info" >Brain Info</button>
-                  <div id="mouse-position"></div>
-	    </div>
-          </div>
-          <div class="col-md-2">
-            <div id="tnailzone"></div>
-              <img id="imgdisp" src="./assets/img/notfound.jpg"/>
-          </div>
-        </div> <!--row--> 
-      
-        <div class="col-md-12">
-          <div class="col-md-2"  style=" background-color:black;">
- 	    <button id="zoomreset">100%</button>  
-            <button id="annotstate">Annotation</button>
-            <!-- <div class="well" *ngIf="annotwindow" > -->
-            <div class="well" id="annotwindow" style="display:none">
-                <div class="col-md-10 col-md-offset-1"  > 
-                    <span class="badge">Geometry type</span>
+          <div class="row">
+            <div class="col-md-2">
+               <h3> <span id="info-trigger" style="cursor:pointer;color:#666600" class="glyphicon glyphicon-question-sign">Info</span></h3>
+              <!-- <button id="info-trigger" class="trigger btn" href="brain-info" >Brain Info</button> -->
+            </div>
+            <div class="col-md-8">
+                <div class="col-md-12">
+                    <div class="col-md-6">
+                      <b style="color:#666600" ><h4>Injection region: </h4></b>
+                      <b style="color:#666600" ><h4>Tracer          : </h4></b>
+                      <b style="color:#666600" ><h4>Metadata        : </h4></b>
+                    </div>
+                    <div class="col-md-6">
+                      <h3 style="color:#666600" > HoverInfo </h3>
+                    </div>
                 </div>
       
-                <select class="form-control" style="cursor:pointer;" id="modetype" style="margin-top:30px; " (change)="onchangeMode($event.target.value)">
-                    <option value="view">View</option>
-                    <option value="draw">Draw</option>
-                    <option value="modify">Modify</option>
-                    <option value="delete">Delete</option>
-                </select>
-                <select  class="form-control" style="cursor:pointer;" id="type"  style="margin-top:20px;"  *ngIf="drawtype"  (change)="onChangeGeometry($event.target.value)">
-                    <option  value="Point">Point</option>
-                    <option value="LineString">LineString</option>
-                    <option value="Polygon">Polygon</option>
-                </select>
-                
-                <!-- <input type="text" id="line_width" name="" value=""/> -->
-                <mat-slider *ngIf = "draw_line_slider" id=" plain_1" tick-interval="1" min="1" max="10" thumb-label="true" value="1" (input)="changeWidth($event)" ></mat-slider>
-
-                <!-- <p-slider [(ngModel)]="val"></p-slider> -->
-                              
-                <!-- <div *ngIf = "draw_line_slider" >
-               
-                </div> -->
-                <!-- <input type="text" id="varyzoom" name="" value=""/>5 -->
-                <!-- <input *ngIf = "draw_line_slider" type="text" id="line_width" name="" value=""/> -->
-
-                <!--div class="row" style="margin-top:15px" --> 
-                    <!-- <span class="badge" >Mouse Position</span>
-                    <br>
-                    <span class="badge"style="margin-top:15px" id="mouse-position"></span> -->
-                <!--/div-->
-                <div>
-                    <ul class="list-group" style="margin-top: 15px">
-                        <li class="list-group-item">
-                            <input type="checkbox" style=" cursor:pointer " (change)="groundtruth($event)" value="groundtruth" checked><b>Show detections({{total_detections}})</b>
-                        </li>
-                        <li class="list-group-item">
-                           <input style=" cursor:pointer " type="checkbox" (change)="userdraw($event)" value="userdraw" checked><b> my markings({{drawn_features}})</b>
-                        </li>
-                        <li class="list-group-item">
-                            <input style=" cursor:pointer " type="checkbox" (change)="userdel($event)" value="userdel"><b>Show my deletions:({{deleted_features}})</b>
-                        </li>
-                    </ul>
+            </div>
+            <div class="col-md-2">
+                <div id="tnailzone"></div>
+                <img id="imgdisp" src="./assets/img/notfound.jpg"/>
       
-                </div>
-                <div class="row">
-                    <label  class="w3-center w3-animate-zoom" style="color:green;font-weight:bold" *ngIf="response" >
-                      <p><i class="fa fa-spinner w3-spin" style="font-size:24px"></i></p></label>
-                    <label class="w3-center w3-animate-zoom" style="color:green;font-weight:bold">{{response_msg}}</label>
-                    <button class="btn btn-primary pull-right"   (click)="callpost()">Save</button>
-                    
-                  </div>
-               
             </div>
       
-      
-          </div>
-          <div id="info">&nbsp;</div>
-          <div class="col-md-10"  style=" border-radius: 25px;border: 2px solid rgba(187, 203, 218, 0.21);padding: 10px;">
-             
-              <app-rangeslide  style="position:fixed; z-index:100 ; right: 2%; width: 15%; padding-right: 5px; padding-left: 10px; padding-bottom: 10px; padding-top: 5px;"></app-rangeslide>
+       </div>
+          
+       <div class="col-md-12">
+          <div class="col-md-2 jumbotron" >
+              <div class="col-md-12">
+                <h4 > <b style="color:whitesmoke">Mouse Position</b></h4>
+                  <div style="color:whitesmoke" id="mouse-position"></div>
+                  <br>
+              </div>
+              <div class="col-md-12" style="margin-bottom:12px" >
+               <div class="col-md-5" > <button class="btn btn-primary" id="zoomreset">100%</button>   </div>
+               <div class="col-md-6" > <button class="btn btn-primary" id="annotstate">Annotation</button> </div>
+             </div>
+
+              <div id="annotwindow" style="display:none">
+              
+              <select class="form-control" style="cursor:pointer;" id="modetype" style="margin-top:15px; " (change)="onchangeMode($event.target.value)">
+                  <option value="view">View</option>
+                  <option value="draw">Draw</option>
+                  <option value="modify">Modify</option>
+                  <option value="delete">Delete</option>
+              </select>
+              
+              <select  class="form-control" style="cursor:pointer;" id="type"  style="margin-top:15px;"  *ngIf="drawtype"  (change)="onChangeGeometry($event.target.value)">
+                  <option  value="Point">Point</option>
+                  <option value="LineString">LineString</option>
+                  <option value="Polygon">Polygon</option>
+              </select>
+              <mat-slider *ngIf = "draw_line_slider" id=" plain_1" tick-interval="1" min="1" max="10" thumb-label="true" value="1" (input)="changeWidth($event)" ></mat-slider>
+              <div>
+                  <ul class="list-group" style="margin-top: 5px">
+                      <li class="list-group-item">
+                          <input type="checkbox" style=" cursor:pointer " (change)="groundtruth($event)" value="groundtruth" checked><b>Show detections({{total_detections}})</b>
+                      </li>
+                      <li class="list-group-item">
+                         <input style=" cursor:pointer " type="checkbox" (change)="userdraw($event)" value="userdraw" checked><b> my markings({{drawn_features}})</b>
+                      </li>
+                      <li class="list-group-item">
+                          <input style=" cursor:pointer " type="checkbox" (change)="userdel($event)" value="userdel"><b>Show my deletions:({{deleted_features}})</b>
+                      </li>
+                  </ul>
+    
+              </div>
+
+              <div class="row">
+                <div class="col-md-7" >
+                    <label  class="w3-center w3-animate-zoom" style="color:green;font-weight:bold" *ngIf="response" >
+                        <p><i class="fa fa-spinner w3-spin" style="font-size:24px"></i></p></label>
+                      <label class="w3-center w3-animate-zoom" style="color:green;font-weight:bold">{{response_msg}}</label>
+                </div>
+                <div class="col-md-5" >
+                  <button class="btn btn-primary "   (click)="callpost()">Save</button>
+                </div>
+                </div>
+            </div>
+            <div id="info"></div>
+            </div>
             
-              <div id="target"  class="map" style="position:inherit; height:450px"></div>
+          <div class="col-md-10" style=" border-radius: 25px;border: 2px solid rgba(187, 203, 218, 0.21);padding: 10px;">
+              <app-rangeslide  style="position:fixed; z-index:100 ; right: 2%; width: 15%; padding-right: 5px; padding-left: 10px; padding-bottom: 10px; padding-top: 5px;"></app-rangeslide>
+              <div id="target"  class="map" style="position:inherit; height:500px"></div>
+
           </div>
+       </div>
+
+       <div class="col-md-12" style="position:fixed;bottom:0px">
           <div id = "sagittal" class = "col-md-2" >
               <div id = "sagittal_pos">
                 <img src="./assets/img/blended_sag.png" alt="sagittal">
               </div>
           </div>
-          <div class="col-md-10"  >
-            <app-thumbnail id = "filmstrip" style="padding:5px" ></app-thumbnail>
-          </div>
-         
-        </div>
-      </div>
-      
+          <app-thumbnail id = "filmstrip" style="padding:5px" ></app-thumbnail>
+       </div>
 
-      
+
+      </div>
+
 
       <div style="display:none" id="info-content" class="panel_content " *ngIf="braininfo">
           
@@ -234,3 +233,110 @@
           <iframe src="http://www.youtube.com/embed/rUu33QHa6fM?rel=0&amp;fs=1&amp;autoplay=1.replace(&quot;&amp;autoplay=1&quot;,&quot;&quot;)" width="380" height="325" frameborder="0" allowfullscreen=""></iframe>
           
           </div>
+
+
+
+      <!-- <div class="container-fluid"> -->
+        <!-- <div class="row"> -->
+          <!-- <div class="col-md-10"> -->
+            <!-- Have to handle this-->
+            <!-- <div class="col-md-2"><a id="home-trigger" class="trigger" href="/" >Home</a></div><br>
+            <div class="col-md-2" ><a id="brain-index-trigger" class="trigger" href="/seriesbrowser" >Brain List</a></div><br> -->
+              <!-- <div class="col-md-2"><button id="info-trigger" class="trigger btn" href="brain-info" >Brain Info</button>
+                  <div id="mouse-position"></div>
+	             </div>
+          </div>
+          <div class="col-md-2">
+            <div id="tnailzone"></div>
+              <img id="imgdisp" src="./assets/img/notfound.jpg"/>
+          </div> -->
+        <!-- </div>  -->
+        <!--row--> 
+      
+        <!-- <div class="col-md-12"> -->
+          <!-- <div class="col-md-2"  style=" background-color:black;"> -->
+            <!-- <button id="zoomreset">100%</button>  
+            <button id="annotstate">Annotation</button> -->
+            <!-- <div class="well" *ngIf="annotwindow" > -->
+            <!-- <div class="well" id="annotwindow" style="display:none"> -->
+                <!-- <div class="col-md-10 col-md-offset-1"  > 
+                    <span class="badge">Geometry type</span>
+                </div> -->
+      
+                <!-- <select class="form-control" style="cursor:pointer;" id="modetype" style="margin-top:30px; " (change)="onchangeMode($event.target.value)">
+                    <option value="view">View</option>
+                    <option value="draw">Draw</option>
+                    <option value="modify">Modify</option>
+                    <option value="delete">Delete</option>
+                </select>
+                <select  class="form-control" style="cursor:pointer;" id="type"  style="margin-top:20px;"  *ngIf="drawtype"  (change)="onChangeGeometry($event.target.value)">
+                    <option  value="Point">Point</option>
+                    <option value="LineString">LineString</option>
+                    <option value="Polygon">Polygon</option>
+                </select> -->
+                
+                <!-- <input type="text" id="line_width" name="" value=""/> -->
+                <!-- <mat-slider *ngIf = "draw_line_slider" id=" plain_1" tick-interval="1" min="1" max="10" thumb-label="true" value="1" (input)="changeWidth($event)" ></mat-slider> -->
+
+                <!-- <p-slider [(ngModel)]="val"></p-slider> -->
+                              
+                <!-- <div *ngIf = "draw_line_slider" >
+               
+                </div> -->
+                <!-- <input type="text" id="varyzoom" name="" value=""/>5 -->
+                <!-- <input *ngIf = "draw_line_slider" type="text" id="line_width" name="" value=""/> -->
+
+                <!--div class="row" style="margin-top:15px" --> 
+                    <!-- <span class="badge" >Mouse Position</span>
+                    <br>
+                    <span class="badge"style="margin-top:15px" id="mouse-position"></span> -->
+                <!--/div-->
+                <!-- <div>
+                    <ul class="list-group" style="margin-top: 15px">
+                        <li class="list-group-item">
+                            <input type="checkbox" style=" cursor:pointer " (change)="groundtruth($event)" value="groundtruth" checked><b>Show detections({{total_detections}})</b>
+                        </li>
+                        <li class="list-group-item">
+                           <input style=" cursor:pointer " type="checkbox" (change)="userdraw($event)" value="userdraw" checked><b> my markings({{drawn_features}})</b>
+                        </li>
+                        <li class="list-group-item">
+                            <input style=" cursor:pointer " type="checkbox" (change)="userdel($event)" value="userdel"><b>Show my deletions:({{deleted_features}})</b>
+                        </li>
+                    </ul>
+      
+                </div> -->
+                <!-- <div class="row">
+                    <label  class="w3-center w3-animate-zoom" style="color:green;font-weight:bold" *ngIf="response" >
+                      <p><i class="fa fa-spinner w3-spin" style="font-size:24px"></i></p></label>
+                    <label class="w3-center w3-animate-zoom" style="color:green;font-weight:bold">{{response_msg}}</label>
+                    <button class="btn btn-primary pull-right"   (click)="callpost()">Save</button>
+                    
+                  </div> -->
+               
+            <!-- </div> -->
+      
+      
+          <!-- </div> -->
+          <!-- <div id="info">&nbsp;</div> -->
+          <!-- <div class="col-md-10"  style=" border-radius: 25px;border: 2px solid rgba(187, 203, 218, 0.21);padding: 10px;"> -->
+             
+             
+            
+              <!-- <div id="target"  class="map" style="position:inherit; height:450px"></div> -->
+          <!-- </div> -->
+          <!-- <div id = "sagittal" class = "col-md-2" >
+              <div id = "sagittal_pos">
+                <img src="./assets/img/blended_sag.png" alt="sagittal">
+              </div>
+          </div> -->
+          <!-- <div class="col-md-10"  >
+           
+          </div> -->
+<!--          
+        </div>
+      </div> -->
+      
+
+      
+
+     
