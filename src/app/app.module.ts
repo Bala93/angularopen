@@ -33,6 +33,7 @@ import { FormsModule } from '@angular/forms';
     HttpModule,
     //SliderModule,
     MatSliderModule,
+
     RouterModule.forRoot(rootRouterConfig, { }),
     // SlickModule.forRoot(),
 

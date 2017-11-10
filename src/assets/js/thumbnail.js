@@ -23,14 +23,14 @@ function thumbnail_init(urls, secids_nis, secids_fluo,bregmas) {
             // var sliceno_temp = urls[i].split('/')[]
             var bregma = bregmas[i] + '';
             if (parseInt(sliceno) == 90) { //FIXME: update this
-                element = '<div><center>'+sliceno+'</center><center>'+ bregma+'</center><img id = nis_' + secid_nis + ' class = "highlighted" data-lazy= "http://mouse.brainarchitecture.org' + urls[i] + '" onclick =' + evt + '/></div>';
+                element = '<div style="color:whitesmoke"><img id = nis_' + secid_nis + ' class = "highlighted" data-lazy= "http://mouse.brainarchitecture.org' + urls[i] + '" onclick =' + evt + '/><center>'+ bregma+'</center></div>';
 		contexturl = urls[i];
 		contextsec = sliceno;
 
             }
 	    else{
                 
-                element = '<div><center>'+sliceno+'</center><center>'+ bregma+'</center><img id = nis_' + secid_nis  + ' data-lazy= "http://mouse.brainarchitecture.org' + urls[i] + '" onclick =' + evt + '/></div>'
+                element = '<div style="color:whitesmoke"><img id = nis_' + secid_nis  + ' data-lazy= "http://mouse.brainarchitecture.org' + urls[i] + '" onclick =' + evt + '/><center>'+ bregma+'</center></div>'
             }
                 
         }

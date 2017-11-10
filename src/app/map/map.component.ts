@@ -2,7 +2,7 @@ import { Component, OnInit,Input,Output,EventEmitter } from '@angular/core';
 import { HttpTestService } from '../httpservice';
 import { HostListener } from "@angular/core";
 //import {SliderModule} from 'primeng/primeng';
-import {MatSliderModule,MatSliderChange} from '@angular/material';
+import {MatSliderModule,MatSliderChange,MatSelect,MatOption} from '@angular/material';
 
 import * as $ from "jquery";
 declare var ol: any;
@@ -47,7 +47,7 @@ export class MapComponent implements OnInit {
   first_pass_length;
   windowsize;
   braininfo;
-  
+  // brainno = [1,2,3,4];
   // annotwindow = true;
   // lastdrawnfeatureid;
   draw_line_slider = false;

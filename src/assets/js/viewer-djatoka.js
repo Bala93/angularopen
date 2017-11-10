@@ -154,6 +154,7 @@ function setupOL(secidx_nis, secidx_fluo) {
 		}
 
 		var imgCenter = [imgWidth / 2, -imgHeight / 2];
+		app.imgCenter = imgCenter;
 		//imagedims = [imgWidth,imgHeight];
 
 		if (app.map_view == null) {
@@ -182,6 +183,12 @@ function setupOL(secidx_nis, secidx_fluo) {
 			    var zoom  = evt.target.getZoom();
 			    if (zoom >= 5) {
 			    }
+			});
+			$('#zoomreset').click(function(){
+				var view = app.map.getView()
+				view.setZoom(2);
+				view.setCenter(imgCenter);
+				console.log('clicked');
 			});
 
 
