@@ -1,8 +1,10 @@
 import { Component, OnInit, ElementRef, ChangeDetectionStrategy } from '@angular/core';
 import { HttpTestService } from '../httpservice';
 import { Observable } from "rxjs/Observable";
-declare function thumbnail_init(inp: any, secids_nis: any, secids_flu: any,bregmas:any);
-declare function thumbnail_load();
+import {Router,ActivatedRoute,Params} from '@angular/router';
+
+declare function thumbnail_init(inp: any, secids_nis: any, secids_flu: any,bregmas:any, nisslstart:any, fluostart:any);
+declare function thumbnail_load(startslice:any);
 
 @Component({
   selector: 'app-thumbnail',
@@ -16,6 +18,8 @@ export class ThumbnailComponent implements OnInit {
 
 
   thumbnails_path;
+  nisslstart;
+  fluostart;
   // slide_array  : Array<string>;
   // slide_observ : Observable<Array<string>>;
   // slide_array  : Array<number>;
@@ -26,19 +30,32 @@ export class ThumbnailComponent implements OnInit {
   sectionids_fluo = [];
   bregmas = [];
 
-  constructor(private _httpService: HttpTestService) { }
+  constructor(private _httpService: HttpTestService,private activatedRoute:ActivatedRoute) { }
 
 
   ngOnInit() {
+    var seriesid;
+    this.activatedRoute.params.subscribe((params:Params) => {
+        seriesid = params['seriesid'];
+        });
+
+    this._httpService.getinitialsection(seriesid).subscribe(
+      data =>{
+        //this.initialsection= data;
+	this.nisslstart=data["N"];
+	this.fluostart=data["F"];
+      });
+
+
     // thumbnail_init();
-    this._httpService.getthumbnails().subscribe(
+    this._httpService.getthumbnails(seriesid).subscribe(
       data => {
       this.slide_array = data;
         // console.log(this.slide_array);
         this.extract_fluo_tnails();
-        thumbnail_init(this.slide_out, this.sectionids_nissl, this.sectionids_fluo,this.bregmas);
-        // console.log(this.slide_out);
-        thumbnail_load();
+        var startslice = thumbnail_init(this.slide_out, this.sectionids_nissl, this.sectionids_fluo,this.bregmas, this.nisslstart, this.fluostart);
+         console.log(startslice);
+        thumbnail_load(parseInt(startslice));
         // this.slide_array.forEach
       });
   }

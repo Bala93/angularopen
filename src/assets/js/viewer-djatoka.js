@@ -12,6 +12,8 @@ var url = 'http://mouse.brainarchitecture.org/webapps/adore-djatoka/resolver';
 var app = {};
 window.app = app;
 
+app.seriesid_nissl = '';
+app.seriesid_fluo = '';
 
 function initLayers(update_fluo_only) {
 
@@ -38,22 +40,18 @@ function initLayers(update_fluo_only) {
 }
 
 function update_tiles(secidx_nis, secidx_fluo) {
-	app.seriesid_nissl = secidx_nis;
-	app.seriesid_fluo = secidx_fluo;
-	//TODO: update annotation layer also
-}
-
-function setupOL(secidx_nis, secidx_fluo) {
-
-	var app = window.app;
-
-	app.seriesid_nissl = '';
-	app.seriesid_fluo = '';
-
 	if (secidx_nis > 0)
 		app.seriesid_nissl = secidx_nis;
 	if (secidx_fluo > 0)
 		app.seriesid_fluo = secidx_fluo;
+
+	//TODO: update annotation layer also
+}
+
+function setupOL() { //secidx_nis, secidx_fluo) {
+
+	var app = window.app;
+
 
 	app.crange = '0-255,0-255,0-255'
 	app.gamma = '1'
@@ -78,7 +76,138 @@ function setupOL(secidx_nis, secidx_fluo) {
 		undefinedHTML: '&nbsp;'
 	});
 
+	var ScaleLine = function(opt_options) {
+        	var options = opt_options || {};
+        	options.render = ScaleLine.render;
+        	var className = typeof options.className !== 'undefined' ?
+            	options.className : 'ol-scale-line';
 
+        	this.innerElement_ = document.createElement('div');
+        	this.innerElement_.className = 'ol-scale-line-inner';
+
+        	this.element_ = document.createElement('div');
+        	this.element_.className = className + ' ol-unselectable';
+        	this.element_.appendChild(this.innerElement_);
+
+        	this.viewState_ = null;
+
+        	this.minWidth_ = typeof options.minWidth !== 'undefined' ? options.minWidth : 64;
+
+        	this.renderedVisible_ = false;
+
+       	 	this.renderedWidth_ = undefined;
+        	this.renderedHTML_ = '';
+        	//var render = options.render ? options.render : ol.control.ScaleLine.render;
+
+        	ol.control.Control.call(this, {
+            		element: this.element_,
+            		render: ScaleLine.render,
+            		target: options.target
+       		});
+
+        		//goog.events.listen(
+        		//    this, ol.Object.getChangeEventType(ol.control.ScaleLineProperty.UNITS),
+        		//    this.handleUnitsChanged_, false, this);
+
+        		//this.setUnits(/** @type {ol.control.ScaleLineUnits} */ (options.units) ||
+        		//    ol.control.ScaleLineUnits.METRIC);
+
+    	};
+
+	ol.inherits(ScaleLine, ol.control.ScaleLine);
+
+    	ScaleLine.render = function(mapEvent) {
+        	var frameState = mapEvent.frameState;
+        	if (frameState === null) {
+            		this.viewState_ = null;
+        	} else {
+            		this.viewState_ = frameState.viewState;
+        	}
+        	this.updateElement_();
+    	};
+    	ScaleLine.prototype.updateElement_ = function () {
+        	var viewState = this.viewState_;
+        	if (viewState === null) {
+            		if (this.renderedVisible_) {
+                		this.element_.style.display = 'none';
+                		this.renderedVisible_ = false;
+            		}
+            		return;
+        	}
+
+        	var center = viewState.center;
+        	var projection = viewState.projection;
+        	var pointResolution =projection.getPointResolution(viewState.resolution, center);
+        	//var projectionUnits = projection.getUnits();
+        	var suffix = 'mm';
+
+        	/*var units = this.getUnits();
+        var nominalCount = this.minWidth_ * pointResolution;
+        var i = 3 * Math.floor(Math.log(this.minWidth_ * pointResolution) / Math.log(10));
+        var count, width;
+        while (true) {
+            count = ol.control.ScaleLine.LEADING_DIGITS[i % 3] * Math.pow(10, Math.floor(i / 3));
+            width = Math.round(count / pointResolution);
+            console.log('i', i, 'width', width, 'count', count, 'res', pointResolution);
+            if (isNaN(width)) {
+                //goog.style.setElementShown(this.element_, false);
+                this.renderedVisible_ = false;
+                return;
+            } else if (width >= this.minWidth_) {
+                break;
+            }
+            ++i;
+        }
+        */
+        	var count, width;
+        	count = 1.;
+        	width = Math.round(count / pointResolution);
+        	while (true) {
+            		if (width > 500) {
+                	count /= 2;
+                	width /= 2;
+            		} else {
+                	break;
+            		}
+       	 	}	
+        	var html = count + ' ' + suffix;
+        	if (this.renderedHTML_ != html) {
+            		this.innerElement_.innerHTML = html;
+            		this.renderedHTML_ = html;
+        	}
+
+        	if (this.renderedWidth_ != width) {
+        		this.innerElement_.style.width = width + 'px';
+            		this.renderedWidth_ = width;
+        	}
+        	if (!this.renderedVisible_) {
+            //goog.style.setElementShown(this.element_, true);
+            		this.element_.style.display = '';
+            		this.renderedVisible_ = true;
+        	}
+
+    	};
+    	var scaleLine = new ScaleLine({
+        	unit: 'pixels',
+        	minWidth: 150,
+    	});
+
+	$('#info-trigger').click(function(){
+		$('#info-content').toggle();
+	});
+
+
+	$("#annotstate").click(function(){
+		$("#annotwindow").toggle();
+	});
+
+	$('#sagittal').click(function (evt) {
+		// var app = window.app;
+		var nslices = app.nslices;
+		//x = evt.pageX - $(this).offset().left;
+		x = evt.offsetX;
+		$('.regular').slick('slickGoTo',x/180*nslices);
+	});
 
 	app.map = new ol.Map({
 
@@ -89,10 +218,18 @@ function setupOL(secidx_nis, secidx_fluo) {
 		pixelRatio: 1,
 		controls: ol.control.defaults({
 			attribution: false
-		}).extend([mousePositionControl]),
+		}).extend([mousePositionControl, scaleLine]),
 		logo: false
 
 	});
+
+	app.map.on('precompose', function(evt) {
+                    //evt.context.imageSmoothingEnabled = false;
+                    //evt.context.webkitImageSmoothingEnabled = false;
+                    //evt.context.mozImageSmoothingEnabled = false;
+                    //evt.context.msImageSmoothingEnabled = false;
+                });	 
+ 
 
 	app.map.on('moveend', function(evt) {
             var map = evt.map;
@@ -133,7 +270,7 @@ function setupOL(secidx_nis, secidx_fluo) {
 		var proj = new ol.proj.Projection({
 			code: 'DJATOKA',
 			units: 'pixels',
-			extent: [0, 0, 256 * Math.pow(2, meta.levels - 1), 256 * Math.pow(2, meta.levels - 1)],
+			extent: [0, 0, 256 * Math.pow(2, meta.levels -1), 256 * Math.pow(2, meta.levels -1)],
 			getPointResolution: function (resolution, point) {
 				return resolution / res;
 			}
@@ -154,13 +291,14 @@ function setupOL(secidx_nis, secidx_fluo) {
 		}
 
 		var imgCenter = [imgWidth / 2, -imgHeight / 2];
+		app.imgCenter = imgCenter;
 		//imagedims = [imgWidth,imgHeight];
 
 		if (app.map_view == null) {
 
 			app.map_view = new ol.View({
 				zoom: 2,
-				maxZoom: meta.levels - 1,
+				maxZoom: meta.levels +1,
 				projection: proj,
 				center: imgCenter,
 				extent: [-0.1 * imgWidth, -0.9 * imgHeight, 1.1 * imgWidth, 0.1 * imgHeight]
@@ -180,42 +318,34 @@ function setupOL(secidx_nis, secidx_fluo) {
 				projection.getPointResolution(viewState.resolution, center);
 				*/
 			    var zoom  = evt.target.getZoom();
-			    if (zoom >= 5) {
+			    if (zoom >= 8) {
+			    	console.log('zoom level ' + zoom);
 			    }
 			});
-
+	
+		$('#zoomreset').click(function(){
+				var view = app.map.getView()
+				view.setZoom(2);
+				view.setCenter(imgCenter);
+			});
 
 
 		}
 
-
 	}
 }
-function annotWindow(){
 
-	$("#annotstate").click(function(){
-		$("#annotwindow").toggle();
-	});
-
-}
-
-function sagittal_localize(){
+//function sagittal_localize(){
 	// var nslices = app.nslices;
 	// var slice_no = 13;
 	// $('#sagittal_pos').css('left',parseFloat(slice_no)/nslices * 180+'px');
-	$('#sagittal').click(function (evt) {
-		// var app = window.app;
-		var nslices = app.nslices;
-		x = evt.pageX - $(this).offset().left;
-		$('.regular').slick('slickGoTo',x/180*nslices);
-	});
-}
+//}
 
-function create_zoom_slider(){
+//function create_zoom_slider(){
 	// var app = window.app;
 	// zoomslider = new ol.control.ZoomSlider();
 	// app.map.addControl(zoomslider);
-}
+//}
 
 // function mapPosition(){
 // 	var app = window.app;
@@ -230,11 +360,7 @@ function create_zoom_slider(){
 
 // }
 
-function brain_info_view(){
-
-	$('#info-trigger').click(function(){
-		$('#info-content').toggle();
-	});
+//function brain_info_view(){
 
 
 	// $("#info-trigger").hover(function(){
@@ -244,7 +370,7 @@ function brain_info_view(){
 	// 	$("#info-content").fadeOut();
 
 	//   })
-}
+//}
 
 
 

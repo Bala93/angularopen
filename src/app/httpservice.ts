@@ -8,13 +8,22 @@ import { Observable } from "rxjs/Observable";
 export class HttpTestService{
     constructor(private _http: Http){}
  
-    getthumbnails():Observable<any>{
-        return this._http.get('http://mitradevel.cshl.org/webtools/seriesbrowser/getthumbnails/4439/')
+    getthumbnails(seriesid):Observable<any>{
+        return this._http.get('http://mitradevel.cshl.org/webtools/seriesbrowser/getthumbnails/'+seriesid+'/')
+            .map(res=>res.json());
+    }
+    getsectioninfo(seriesid,sectionid):Observable<any>{
+        return this._http.get('http://mitradevel.cshl.org/webtools/seriesbrowser/getsectioninfo/'+seriesid+'/'+sectionid)
             .map(res=>res.json());
     }
 
     getbraininfo(seriesid):Observable<any>{
         return this._http.get('http://mitradevel.cshl.org/webtools/seriesbrowser/getbraininfo/'+seriesid+'/')
+            .map(res=>res.json());
+    }
+
+    getinitialsection(seriesid):Observable<any>{
+        return this._http.get('http://mitradevel.cshl.org/webtools/seriesbrowser/getinitialsection/'+seriesid+'/')
             .map(res=>res.json());
     }
 

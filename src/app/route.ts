@@ -5,6 +5,7 @@ import { RangeslideComponent } from "./rangeslide/rangeslide.component";
 import { ThumbnailComponent } from "./thumbnail/thumbnail.component";
 //import {SliderComponent} from "./slider/slider.component";
 export const rootRouterConfig: Routes = [
+    {path:'map/:seriesid',component:MapComponent},
     {path:'map',component:MapComponent},
     // {path:'slider',component:SliderCheckComponent},
     {path:'rangeslider',component:RangeslideComponent},

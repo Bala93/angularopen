@@ -1,24 +1,27 @@
 import { Component, OnInit,Input,Output,EventEmitter } from '@angular/core';
 import { HttpTestService } from '../httpservice';
 import { HostListener } from "@angular/core";
+import {Router,ActivatedRoute,Params} from '@angular/router';
 //import {SliderModule} from 'primeng/primeng';
 import {MatSliderModule,MatSliderChange} from '@angular/material';
+
 
 import * as $ from "jquery";
 declare var ol: any;
 
-declare function setupOL(secidx_nis: any, secidx_fluo: any);
+declare function setupOL(); 
+declare function update_tiles(secidx_nis: any, secidx_fluo: any);
 declare function initLayers();
 declare function add_annotLayers();
 // declare function add_controls();
 declare function set_draw_style();
 declare function thickLineToPolygon(LineString:any,thickness:any);
-declare function createwidthslider();
-declare function annotWindow();
-declare function mapPosition();
-declare function sagittal_localize();
-declare function create_zoom_slider();
-declare function brain_info_view();
+//declare function createwidthslider();
+//declare function annotWindow();
+//declare function mapPosition();
+//declare function sagittal_localize();
+//declare function create_zoom_slider();
+//declare function brain_info_view();
 declare function displayFeatureInfo(pixel:any);
 // declare function createwidthslider();
 // declare function 
@@ -47,33 +50,44 @@ export class MapComponent implements OnInit {
   first_pass_length;
   windowsize;
   braininfo;
-  
+  sectioninfo;
+  seriesid;
+  initialsection; 
   // annotwindow = true;
   // lastdrawnfeatureid;
   draw_line_slider = false;
   //collective_features = ol.Collection();
 
 
-  constructor(private _httpService: HttpTestService) {
+  constructor(private _httpService: HttpTestService,private activatedRoute:ActivatedRoute) {
   }
 
   
   ngOnInit() {
     this.app = window["app"];
     this.windowsize = window.innerHeight;
-    //console.log(this.windowsize);
+    console.log("hai");
+    this.activatedRoute.params.subscribe((params:Params) => {
+	this.seriesid = params['seriesid'];
+	});
     
+    if (!(this.seriesid)){
+	this.seriesid = 4439;
+    }
+    this.getinitialsection(this.seriesid);
+    this.getbraininfo(this.seriesid); //FIXME
   }
 
   ngAfterViewInit() {
-    this.getbraininfo(4439); //FIXME
-    brain_info_view();
-    create_zoom_slider();
+
+    //brain_info_view();
+    //create_zoom_slider();
     //setupOL('1055802', '1056090');
-    setupOL('967462', '967732');
-    initLayers();
+    console.log(this.initialsection);
+    //setupOL('967462', '967732');
+    setupOL(); //this.initialsection['N'],this.initialsection['F']);
     add_annotLayers();
-    annotWindow();
+    //annotWindow();
   
     // mapPosition();
     // this can be added by assigning the length of first pass polygons.
@@ -82,9 +96,9 @@ export class MapComponent implements OnInit {
     set_draw_style();
     // createwidthslider();
     this.vector_edit_change();
-    this.getpolygons();
+    //this.getpolygons(); // FIXME: move to button click event
     this.maponclick();
-    sagittal_localize();  
+    //sagittal_localize();  
     // this.draw_line_slider = false;
     
     
@@ -345,6 +359,27 @@ export class MapComponent implements OnInit {
       });
 
   }
+
+  getsectioninfo(seriesid,sectionid){
+    this._httpService.getsectioninfo(seriesid,sectionid).subscribe(
+      data =>{
+        this.sectioninfo = data;
+        console.log(this.sectioninfo);
+      });
+
+  }
+
+  getinitialsection(seriesid){
+    this._httpService.getinitialsection(seriesid).subscribe(
+      data =>{
+        sectionid = data["F"];
+	getsectioninfo(seriesid, sectionid);
+	update_tiles(data["N"],data["F"]);
+	initLayers();
+      });
+
+  }
+
 
   getpolygons() {
     this._httpService.getfirstpasspolygons().subscribe(

@@ -1,4 +1,4 @@
-function thumbnail_init(urls, secids_nis, secids_fluo,bregmas) {
+function thumbnail_init(urls, secids_nis, secids_fluo,bregmas,nisslstart, fluostart) {
     var innerhtml = ''
     var app = window.app;
     app.nslices = urls.length;
@@ -22,12 +22,16 @@ function thumbnail_init(urls, secids_nis, secids_fluo,bregmas) {
             // console.log(secid_nis);
             // var sliceno_temp = urls[i].split('/')[]
             var bregma = bregmas[i] + '';
-            if (parseInt(sliceno) == 90) { //FIXME: update this
+            //if (parseInt(sliceno) == 90) { //FIXME: update this
+	    if(secid_nis==nisslstart || secid_fl==fluostart) {
                 element = '<div><center>'+sliceno+'</center><center>'+ bregma+'</center><img id = nis_' + secid_nis + ' class = "highlighted" data-lazy= "http://mouse.brainarchitecture.org' + urls[i] + '" onclick =' + evt + '/></div>';
 		contexturl = urls[i];
 		contextsec = sliceno;
 
             }
+	    else if(bregma >-0.04 && bregma<0.04 ) {
+                element = '<div><center>'+sliceno+'</center><center>'+ bregma+'</center><img id = nis_' + secid_nis + ' class = "bregma" data-lazy= "http://mouse.brainarchitecture.org' + urls[i] + '" onclick =' + evt + '/></div>';
+	    }
 	    else{
                 
                 element = '<div><center>'+sliceno+'</center><center>'+ bregma+'</center><img id = nis_' + secid_nis  + ' data-lazy= "http://mouse.brainarchitecture.org' + urls[i] + '" onclick =' + evt + '/></div>'
@@ -42,10 +46,11 @@ function thumbnail_init(urls, secids_nis, secids_fluo,bregmas) {
     $("#imgdisp").attr("src",'http://mouse.brainarchitecture.org/'+contexturl); //'http://mouse.brainarchitecture.org/brainimg/PMD2327/PMD2327&2326-F5-2015.09.18-05.25.02_PMD2327_2_0014.jpg');
 	atlasurl = 'http://mitradevel.cshl.org/webtools/seriesbrowser/getatlasgeojson/'+pmdno+'/'+contextsec+'/';
     app.atlas_layer.setSource(new ol.source.Vector({url: atlasurl, format:new ol.format.GeoJSON()}));
+    return contextsec;
 }
 
-function thumbnail_load() {
-    var startslide = 90; //FIXME
+function thumbnail_load(startslide) {
+    //var startslide = 90; //FIXME
     $('.regular').slick({
         lazyLoad: 'ondemand',
         slidesToShow: 10,

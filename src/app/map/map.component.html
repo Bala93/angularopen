@@ -96,6 +96,7 @@
       
         <div class="col-md-12">
           <div class="col-md-2"  style=" background-color:black;">
+ 	    <button id="zoomreset">100%</button>  
             <button id="annotstate">Annotation</button>
             <!-- <div class="well" *ngIf="annotwindow" > -->
             <div class="well" id="annotwindow" style="display:none">
@@ -185,12 +186,11 @@
           
           
           <br>
-          <p style="color:white" ><strong>Section:</strong>&nbsp;{{braininfo.desc}}<br>
+          <p style="color:white" ><strong>Section:</strong>&nbsp;{{sectioninfo.name}}<br>
           <!-- Provide the y coordinate if it is not null -->
           
-          (Bregma&nbsp;~
-          -0.52&nbsp;mm)
-          
+          (Bregma ~ {{sectioninfo.y_coord}} &nbsp; mm)<br>
+          Atlas id {{sectioninfo.atlasID}}
           
           </p>
           
