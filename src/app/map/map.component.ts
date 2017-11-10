@@ -372,8 +372,8 @@ export class MapComponent implements OnInit {
   getinitialsection(seriesid){
     this._httpService.getinitialsection(seriesid).subscribe(
       data =>{
-        sectionid = data["F"];
-	getsectioninfo(seriesid, sectionid);
+        var sectionid = data["F"];
+	this.getsectioninfo(seriesid, sectionid);
 	update_tiles(data["N"],data["F"]);
 	initLayers();
       });
