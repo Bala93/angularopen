@@ -24,18 +24,18 @@ function thumbnail_init(urls, secids_nis, secids_fluo,bregmas,nisslstart, fluost
             var bregma = bregmas[i] + '';
             //if (parseInt(sliceno) == 90) { //FIXME: update this
 	    if(secid_nis==nisslstart || secid_fl==fluostart) {
-                element = '<div><center>'+sliceno+'</center><center>'+ bregma+'</center><img id = nis_' + secid_nis + ' class = "highlighted" data-lazy= "http://mouse.brainarchitecture.org' + urls[i] + '" onclick =' + evt + '/></div>';
+                element = '<div style="color:whitesmoke"><img id = nis_' + secid_nis + ' class = "highlighted" data-lazy= "http://mouse.brainarchitecture.org' + urls[i] + '" onclick =' + evt + '/><center>'+bregma+' mm</center></div>';
 
 		contexturl = urls[i];
 		contextsec = sliceno;
 
             }
 	    else if(bregma >-0.04 && bregma<0.04 ) {
-                element = '<div><center>'+sliceno+'</center><center>'+ bregma+'</center><img id = nis_' + secid_nis + ' class = "bregma" data-lazy= "http://mouse.brainarchitecture.org' + urls[i] + '" onclick =' + evt + '/></div>';
+                element = '<div style="color:whitesmoke"><img id = nis_' + secid_nis + ' class = "bregma" data-lazy= "http://mouse.brainarchitecture.org' + urls[i] + '" onclick =' + evt + '/><center>'+bregma+' mm</center></div>';
 	    }
 	    else{
                 
-                element = '<div style="color:whitesmoke"><img id = nis_' + secid_nis  + ' data-lazy= "http://mouse.brainarchitecture.org' + urls[i] + '" onclick =' + evt + '/><center>'+ bregma+'</center></div>'
+                element = '<div style="color:whitesmoke"><img id = nis_' + secid_nis  + ' data-lazy= "http://mouse.brainarchitecture.org' + urls[i] + '" onclick =' + evt + '/><center>'+ bregma+' mm</center></div>'
             }
                 
         }
