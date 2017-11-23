@@ -11,7 +11,7 @@ import { AppComponent } from './app.component';
 import { MapComponent } from './map/map.component';
 import { HttpTestService } from "./httpservice";
 import { ThumbnailComponent } from './thumbnail/thumbnail.component';
-
+import { LoginComponent } from './login/login.component';
 import { RangeslideComponent } from './rangeslide/rangeslide.component';
 // import { SlickModule} from "ngx-slick";
 
@@ -23,7 +23,7 @@ import {SliderComponent}from './slider/slider.component';
 //import { MdInputModule } from '@angular2-material/input';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
+import {RegisterComponent} from './register/register.component';
 
 
 
@@ -33,7 +33,7 @@ import { FormsModule } from '@angular/forms';
     HttpModule,
     //SliderModule,
     MatSliderModule,
-
+    FormsModule,
     RouterModule.forRoot(rootRouterConfig, { }),
     // SlickModule.forRoot(),
 
@@ -44,7 +44,9 @@ import { FormsModule } from '@angular/forms';
     ThumbnailComponent,
     RangeslideComponent,
     SliderComponent,
-    // myAppModule
+    LoginComponent,
+    // myAppModulei,
+    RegisterComponent
   ],
   
   

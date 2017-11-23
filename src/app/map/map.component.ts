@@ -4,9 +4,10 @@ import { HostListener } from "@angular/core";
 import {Router,ActivatedRoute,Params} from '@angular/router';
 //import {SliderModule} from 'primeng/primeng';
 import {MatSliderModule,MatSliderChange,MatSelect,MatOption} from '@angular/material';
-
+import {LoginComponent} from '../login/login.component';
 
 import * as $ from "jquery";
+import {global} from '../.././global';
 declare var ol: any;
 
 declare function setupOL(); 
@@ -56,15 +57,19 @@ export class MapComponent implements OnInit {
   // annotwindow = true;
   // lastdrawnfeatureid;
   draw_line_slider = false;
+  username;
   //collective_features = ol.Collection();
 
-
   constructor(private _httpService: HttpTestService,private activatedRoute:ActivatedRoute) {
+     //this.currentUser = JSON.parse(localStorage.getitem('currentUser'));
   }
 
   
   ngOnInit() {
     this.app = window["app"];
+        
+    this.username = this.app.username;
+
     this.windowsize = window.innerHeight;
     console.log("hai");
     this.activatedRoute.params.subscribe((params:Params) => {
@@ -74,6 +79,7 @@ export class MapComponent implements OnInit {
     if (!(this.seriesid)){
 	this.seriesid = 4439;
     }
+
     this.getinitialsection(this.seriesid);
     this.getbraininfo(this.seriesid); //FIXME
   }
@@ -360,6 +366,16 @@ export class MapComponent implements OnInit {
 
   }
 
+  logout(){
+    this._httpService.userLogout().subscribe(
+	data => {
+	  console.log(data);
+	}
+	
+    );
+  }
+
+
   getsectioninfo(seriesid,sectionid){
     this._httpService.getsectioninfo(seriesid,sectionid).subscribe(
       data =>{
@@ -442,7 +458,7 @@ export class MapComponent implements OnInit {
     console.log(evt.startValue);
   }
 
-
+  
 
   updateCounts() {
     this.total_detections = this.app.vector_data.getSource().getFeatures().length;

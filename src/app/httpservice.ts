@@ -7,6 +7,19 @@ import { Observable } from "rxjs/Observable";
 @Injectable()
 export class HttpTestService{
     constructor(private _http: Http){}
+ 	 
+    public username:string;
+
+    setUsername(params){
+    	this.username = params  || localStorage.getItem('this.username');	
+	return this.username;
+    }
+
+    getUsername():string{
+	console.log(this.username);
+	return this.username;
+    }
+
  
     getthumbnails(seriesid):Observable<any>{
         return this._http.get('http://mitradevel.cshl.org/webtools/seriesbrowser/getthumbnails/'+seriesid+'/')
@@ -36,6 +49,20 @@ export class HttpTestService{
         return this._http.get('http://mitradevel.cshl.org/nisslapi/getdata/')
                          .map(res=>res.json());
     }
+
+    userLogin(params){
+	return this._http.post('http://mitradevel.cshl.org/users/rest-auth/login/',params);
+    }
+   
+    userRegister(params){
+	return this._http.post('http://mitradevel.cshl.org/users/rest-auth/registration/',params);
+    }
+
+	
+    userLogout(){
+	return this._http.post('http://mitradevel.cshl.org/users/rest-auth/logout/');
+    }
+   
 
 }
 
