@@ -367,9 +367,13 @@ export class MapComponent implements OnInit {
   }
 
   logout(){
+    var this_ = this;
+    
     this._httpService.userLogout().subscribe(
 	data => {
-	  console.log(data);
+   	 console.log("Logged out");
+	  this_.username ='balamurali';
+	  window['app'].username = '';
 	}
 	
     );

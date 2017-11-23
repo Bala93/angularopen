@@ -60,7 +60,7 @@ export class HttpTestService{
 
 	
     userLogout(){
-	return this._http.post('http://mitradevel.cshl.org/users/rest-auth/logout/');
+	return this._http.post('http://mitradevel.cshl.org/users/rest-auth/logout/',{});
     }
    
 
