@@ -21,6 +21,10 @@
             <input type="password" class="form-control" name="password2" [(ngModel)]="model.password2" #password2="ngModel" required />
             <div *ngIf="f.submitted && !password2.valid" class="help-block">Password is required</div>
         </div>
+	<ul *ngFor = "let x of status">
+	   <li> {{x}} </li>
+	</ul>
+
         <div class="form-group">
             <button [disabled]="loading" class="btn btn-primary">Register</button>
             <a [routerLink]="['/login']" class="btn btn-link">Cancel</a>

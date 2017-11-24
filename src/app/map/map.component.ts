@@ -7,7 +7,6 @@ import {MatSliderModule,MatSliderChange,MatSelect,MatOption} from '@angular/mate
 import {LoginComponent} from '../login/login.component';
 
 import * as $ from "jquery";
-import {global} from '../.././global';
 declare var ol: any;
 
 declare function setupOL(); 
@@ -57,7 +56,7 @@ export class MapComponent implements OnInit {
   // annotwindow = true;
   // lastdrawnfeatureid;
   draw_line_slider = false;
-  username;
+  username = '';
   //collective_features = ol.Collection();
 
   constructor(private _httpService: HttpTestService,private activatedRoute:ActivatedRoute) {
@@ -367,12 +366,11 @@ export class MapComponent implements OnInit {
   }
 
   logout(){
-    var this_ = this;
-    
+    this.username = '' ; 
     this._httpService.userLogout().subscribe(
 	data => {
    	 console.log("Logged out");
-	  this_.username ='balamurali';
+	  this.username ='';
 	  window['app'].username = '';
 	}
 	

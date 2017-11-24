@@ -6,7 +6,6 @@ import { FlexLayoutModule} from '@angular/flex-layout';
 import { FormsModule} from '@angular/forms';
 import {Router} from '@angular/router';
 import { MapComponent} from '../map/map.component';
-import { global} from '../../global';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +21,6 @@ status;
 //loading = false;
 model:any={};
 params;
-uname:global;
 
 constructor(private _httpService: HttpTestService,private router:Router) { 
 	
@@ -42,7 +40,7 @@ do_login(){
 
       data =>{
 				  var app;
-					console.log(this.model.username);
+					//console.log(this.model.username);
 					this.router.navigate(['/map/4189/']);
 			   	app = window["app"];
 					app.username = this.model.username;

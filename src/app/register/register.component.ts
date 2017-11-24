@@ -25,19 +25,14 @@ export class RegisterComponent {
 do_registration(){
    
    var params = {'username':this.model.username,'email':this.model.email,'password1':this.model.password1,'password2':this.model.password2}; 
-   console.log(params);
    this._httpService.userRegister(params).subscribe(
         
         data=>{
-
-           console.log(data);
 	   this.router.navigate(['/login']);	
         },
 
        err  => {
-        
         this.status = Object.values(JSON.parse(err._body));
-        console.log(this.status);
       }
 
  );
