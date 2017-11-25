@@ -6,6 +6,9 @@ import { FlexLayoutModule} from '@angular/flex-layout';
 import { FormsModule} from '@angular/forms';
 import {Router} from '@angular/router';
 import { MapComponent} from '../map/map.component';
+//import { User } from '../user';
+
+declare function add_user()
 
 @Component({
   selector: 'app-login',
@@ -17,10 +20,12 @@ import { MapComponent} from '../map/map.component';
 //@Injectable()
 export class LoginComponent implements OnInit{
 	
+//@Input() userinfo:User;
 status;
 //loading = false;
 model:any={};
 params;
+//userinfo:User;
 
 constructor(private _httpService: HttpTestService,private router:Router) { 
 	
@@ -44,6 +49,8 @@ do_login(){
 					this.router.navigate(['/map/4189/']);
 			   	app = window["app"];
 					app.username = this.model.username;
+					//add_user();
+					//this.userinfo.username = this.model.username;
 					//uname['uname'] = 'balamurali';				
 				  //this.update_username(this);
       },

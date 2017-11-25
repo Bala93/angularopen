@@ -5,6 +5,7 @@ import {Router,ActivatedRoute,Params} from '@angular/router';
 //import {SliderModule} from 'primeng/primeng';
 import {MatSliderModule,MatSliderChange,MatSelect,MatOption} from '@angular/material';
 import {LoginComponent} from '../login/login.component';
+//import {User} from '../user';
 
 import * as $ from "jquery";
 declare var ol: any;
@@ -13,6 +14,7 @@ declare function setupOL();
 declare function update_tiles(secidx_nis: any, secidx_fluo: any);
 declare function initLayers();
 declare function add_annotLayers();
+declare function remove_user();
 // declare function add_controls();
 declare function set_draw_style();
 declare function thickLineToPolygon(LineString:any,thickness:any);
@@ -25,7 +27,7 @@ declare function thickLineToPolygon(LineString:any,thickness:any);
 declare function displayFeatureInfo(pixel:any);
 // declare function createwidthslider();
 // declare function 
-
+declare function add_user();
 
 @Component({
   selector: 'app-map',
@@ -56,10 +58,11 @@ export class MapComponent implements OnInit {
   // annotwindow = true;
   // lastdrawnfeatureid;
   draw_line_slider = false;
-  username = '';
+  //username = '';
   //collective_features = ol.Collection();
 
   constructor(private _httpService: HttpTestService,private activatedRoute:ActivatedRoute) {
+     //console.log(this.userinfo.username);
      //this.currentUser = JSON.parse(localStorage.getitem('currentUser'));
   }
 
@@ -67,7 +70,8 @@ export class MapComponent implements OnInit {
   ngOnInit() {
     this.app = window["app"];
         
-    this.username = this.app.username;
+    //this.username = this.app.username;
+    //this.username = this.userinfo.username;
 
     this.windowsize = window.innerHeight;
     console.log("hai");
@@ -84,6 +88,7 @@ export class MapComponent implements OnInit {
   }
 
   ngAfterViewInit() {
+    add_user();
 
     //brain_info_view();
     //create_zoom_slider();
@@ -366,12 +371,13 @@ export class MapComponent implements OnInit {
   }
 
   logout(){
-    this.username = '' ; 
+    //this.username = '' ; 
     this._httpService.userLogout().subscribe(
 	data => {
    	 console.log("Logged out");
-	  this.username ='';
+	  //this.username ='';
 	  window['app'].username = '';
+	  remove_user();
 	}
 	
     );

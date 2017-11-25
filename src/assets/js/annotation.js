@@ -418,6 +418,22 @@ var thickLineToPolygon = (function () {
   return me;
 }());
 
+
+function remove_user(){
+ $('#username').html('');
+ $('#login').show();
+ $('#logout').hide();
+}
+
+function add_user(){
+   var cont = window.app.username;
+   if (cont) {
+   $('#username').html(cont);
+   $('#logout').show();
+   $('#login').hide();
+ }
+}
+
 // function line_thickness(){
 
 //   $('#line_width').

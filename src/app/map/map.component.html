@@ -77,9 +77,9 @@
       
 
       <div class="container-fluid">
-	<button [routerLink] = "['/login']">Login</button>
-	  {{username}}
-	<button (click)="logout()">Logout</button>
+	<button id = "login" [routerLink] = "['/login']">Login</button>
+ 	<div id = "username"></div>
+	<button id = "logout" (click)="logout()" style ="display:none">Logout</button>
           <div class="row">
             <div class="col-md-2">
                <h3> <span id="info-trigger" style="cursor:pointer;color:#666600" class="glyphicon glyphicon-question-sign">Info</span></h3>
