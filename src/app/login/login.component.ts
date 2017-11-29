@@ -6,14 +6,19 @@ import { FlexLayoutModule} from '@angular/flex-layout';
 import { FormsModule} from '@angular/forms';
 import {Router} from '@angular/router';
 import { MapComponent} from '../map/map.component';
+// <<<<<<< Updated upstream
 //import { User } from '../user';
 
 declare function add_user()
 
+// =======
+import { MatCard,MatTableModule,MatToolbarModule,MatSnackBarModule,MatCardModule,MatListModule,MatInputModule,MatButtonModule,MatMenuModule,MatProgressSpinnerModule } from '@angular/material';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+// >>>>>>> Stashed changes
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
+  styleUrls: ['./login.component.scss'],
   providers: [HttpTestService],
 })
 
@@ -28,7 +33,7 @@ params;
 //userinfo:User;
 
 constructor(private _httpService: HttpTestService,private router:Router) { 
-	
+	this._httpService.logout();
 } 
 
 

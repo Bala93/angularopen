@@ -1,0 +1,40 @@
+@import '../../styles/variables.scss';
+
+.input-icon {
+  position: absolute;
+  right: 0;
+
+  &.loading {
+    color: map-get($colors, light-tint);
+  }
+  &.valid {
+    color: map-get($colors, success);
+  }
+  &.invalid {
+    color: map-get($colors, error);
+  }
+}
+
+ .cont {
+    margin-top: 10%; 
+    text-align: center;
+    background-color: map-get($colors, text-on-dark);
+    padding: 1.0em;
+  }
+   button[type="submit"] {
+    width: 100%;
+    background-color: map-get($colors, vivid);
+    border: 2px solid map-get($colors, text-on-dark);
+    color: map-get($colors, dark);
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+.form-control{
+
+  margin-bottom:14px;
+}
+
+body{
+  background-color: yellow;
+
+}

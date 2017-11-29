@@ -1,12 +1,15 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpTestService } from '../httpservice';
-
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @Component({
     //moduleId: module.id,
+    selector: 'app-register',
     templateUrl: 'register.component.html',
+
+    styleUrls: ['register.component.scss'],
     providers:[HttpTestService],
 })
 

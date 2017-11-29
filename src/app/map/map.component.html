@@ -74,12 +74,87 @@
       </div>
       <app-thumbnail></app-thumbnail>
       </div> -->
+
+      <link rel="stylesheet" href="http://fortawesome.github.io/Font-Awesome/assets/font-awesome/css/font-awesome.css">
+
+    <!-- <div class="container">           
+      <div class="navbar-collapse style= collapse in"  style="
+      padding-left: 0px;">
+         <ul class="nav navbar-nav navbar-right">
+  
+            
+              <span class="glyphicon  "></span>
+              <form>
+              <div class="form-group">
+              <button id = "logout" (click)="logout()" style ="display:none;font-size:13px" class="btn btn-lg btn-primary btn-block">Logout</button>
+              </div>
+              <div class="form-group">
+              <div id = "username" style="color:aqua;font-size:13px"></div>
+              </div>
+              </form>
+              <div class="form-group">
+              <button  id = "login" [routerLink] = "['/login']" class="btn btn-lg btn-primary btn-block" >Sign in</button>
+              </div>
+              
+              
+              <span class="glyphicon "></span>
+            
+
       
+        </ul>
+    </div>
+    </div> -->
+    <!-- <div class="navbar navbar-inverse"> -->
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+               </div>
+          <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              </ul>
+
+              <ul class="nav navbar-nav navbar-right">
+                <li>
+                        <div id = "username" style="color:aqua;font-size:18px"></div>
+                        </li>
+                <li>
+                        <button id = "logout" (click)="logout()" class="btn btn-success" style ="display:none;font-size:13px">Sign out</button>
+                    <!-- <a id = "logout" (click)="logout()" style ="display:none;font-size:13px" class="btn btn-lg btn-primary btn-block">Logout</a> -->
+                </li>
+                <li>
+                        <button type="submit" id = "login" [routerLink] = "['/login']" class="btn btn-success">Sign in</button>
+                    </li>
+              </ul>
+      <!-- <form class="navbar-form navbar-right" method="post" action="/annotate/accounts/login/">
+        <input type="hidden" name="csrfmiddlewaretoken" value="7sJl0qlQ8dtYLEJRi6QbWsEk6bfwXxjn">
+        <div id = "username" style="color:aqua;font-size:18px"></div>
+        <button id = "logout" (click)="logout()" style ="display:none;font-size:13px" class="btn btn-lg btn-primary btn-block">Logout</button>
+        
+        <input type="hidden" name="next" value="/annotate/">
+        <button type="submit" id = "login" [routerLink] = "['/login']" class="btn btn-success">Sign in</button>
+        
+      </form> -->
+    
+  
+          </div><!--/.navbar-collapse -->
+        </div>
+      <!-- </div> -->
+       
 
       <div class="container-fluid">
-	<button id = "login" [routerLink] = "['/login']">Login</button>
- 	<div id = "username"></div>
-	<button id = "logout" (click)="logout()" style ="display:none">Logout</button>
+<!-- <<<<< Updated upstream -->
+	
+ 	<!-- <div id = "username"></div> -->
+
+
+	
+	
+	
+<!-- >>>>>>> Stashed changes -->
           <div class="row">
             <div class="col-md-2">
                <h3> <span id="info-trigger" style="cursor:pointer;color:#666600" class="glyphicon glyphicon-question-sign">Info</span></h3>
@@ -157,9 +232,10 @@
                 <div class="col-md-5" >
                   <button class="btn btn-primary "   (click)="callpost()">Save</button>
                 </div>
+                <div id="info"></div>
                 </div>
             </div>
-            <div id="info"></div>
+            
             </div>
             
           <div class="col-md-10" style=" border-radius: 25px;border: 2px solid rgba(187, 203, 218, 0.21);padding: 10px;">

@@ -1,7 +1,7 @@
 import {Injectable}from  '@angular/core';
 import {Http} from '@angular/http';
 import 'rxjs/add/operator/map';
-import {Headers}from'@angular/http';
+import {Headers,Response}from'@angular/http';
 import { Observable } from "rxjs/Observable";
 
 @Injectable()
@@ -55,7 +55,7 @@ export class HttpTestService{
     }
    
     userRegister(params){
-	return this._http.post('http://mitradevel.cshl.org/users/rest-auth/registration/',params);
+	return this._http.post('http://mitradevel.cshl.org/users/rest-auth/registration/',params)
     }
 
 	
@@ -63,6 +63,11 @@ export class HttpTestService{
 	return this._http.post('http://mitradevel.cshl.org/users/rest-auth/logout/',{});
     }
    
+
+    logout() {
+        // remove user from local storage to log user out
+        localStorage.removeItem('currentUser');
+    }
 
 }
 

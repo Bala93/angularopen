@@ -1,0 +1,21 @@
+@import '../../styles/variables.scss';
+
+.wrap {
+  margin-top: 5em;
+
+  a {
+    display: block;
+    text-align: center;
+    color: map-get($colors, light-tint);
+    font-size: 1.7em;
+    font-weight: bold;
+    text-decoration: none;
+    padding: .5em;
+    border-bottom: 1px solid map-get($colors, dark);
+
+    &.active {
+      border-bottom: 10px solid map-get($colors, text-on-dark);
+      color: map-get($colors, text-on-dark);
+    }
+  }
+}
