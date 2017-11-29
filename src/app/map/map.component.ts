@@ -382,6 +382,7 @@ export class MapComponent implements OnInit {
 	
     );
   }
+  
 
 
   getsectioninfo(seriesid,sectionid){
