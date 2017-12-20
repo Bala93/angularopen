@@ -55,6 +55,7 @@ export class MapComponent implements OnInit {
   sectioninfo;
   seriesid;
   initialsection; 
+  split_layer_coords;
   // annotwindow = true;
   // lastdrawnfeatureid;
   draw_line_slider = false;
@@ -82,7 +83,7 @@ export class MapComponent implements OnInit {
     if (!(this.seriesid)){
 	this.seriesid = 4439;
     }
-
+    //this.getsplitinfo();
     this.getinitialsection(this.seriesid);
     this.getbraininfo(this.seriesid); //FIXME
   }
@@ -369,6 +370,18 @@ export class MapComponent implements OnInit {
       });
 
   }
+
+   getsplitinfo(){
+    this._httpService.getSplitLayer().subscribe(
+      data =>{
+        this.split_layer_coords = data;
+	window['app'].split_json = this.split_layer_coords;
+      console.log(this.split_layer_coords);
+      });
+
+ }
+
+
 
   logout(){
     //this.username = '' ; 

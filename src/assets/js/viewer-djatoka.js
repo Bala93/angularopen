@@ -48,6 +48,7 @@ function update_tiles(secidx_nis, secidx_fluo) {
 	//TODO: update annotation layer also
 }
 
+
 function setupOL() { //secidx_nis, secidx_fluo) {
 
 	var app = window.app;
@@ -298,7 +299,7 @@ function setupOL() { //secidx_nis, secidx_fluo) {
 
 			app.map_view = new ol.View({
 				zoom: 2,
-				maxZoom: meta.levels +1,
+				maxZoom: 10,
 				projection: proj,
 				center: imgCenter,
 				extent: [-0.1 * imgWidth, -0.9 * imgHeight, 1.1 * imgWidth, 0.1 * imgHeight]

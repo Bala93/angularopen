@@ -69,5 +69,9 @@ export class HttpTestService{
         localStorage.removeItem('currentUser');
     }
 
-}
+    getSplitLayer(){
+	return this._http.get('http://mitradevel.cshl.org/static/tile_split.json').map(res=>res.json());
+    }	
 
+}
+	

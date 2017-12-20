@@ -230,7 +230,7 @@
                       <label class="w3-center w3-animate-zoom" style="color:green;font-weight:bold">{{response_msg}}</label>
                 </div>
                 <div class="col-md-5" >
-                  <button class="btn btn-primary "   (click)="callpost()">Save</button>
+                  <button class="btn btn-primary " id="callpost" style="display:none" (click)="callpost()">Save</button>
                 </div>
                 <div id="info"></div>
                 </div>
@@ -259,7 +259,7 @@
       </div>
 
 
-      <div style="display:none" id="info-content" class="panel_content " *ngIf="braininfo">
+      <div id="info-content" class="panel_content " *ngIf="braininfo">
           
           <h3 style="color:white" >{{braininfo.desc}} ({{braininfo.nSections}} sections)</h3>
           

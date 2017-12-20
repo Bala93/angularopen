@@ -21,7 +21,7 @@ function add_annotLayers(){
 	source: new ol.source.Vector({
 		wrapX: false,
 		})
-    });
+    })
 
     
 
@@ -110,6 +110,42 @@ function add_annotLayers(){
       });
 
 
+    var split_layer = new ol.layer.Vector({
+
+		source : new ol.source.Vector({
+		  url : 'http://mitradevel.cshl.org/static/tile_split.json',
+		  format : new ol.format.GeoJSON(),
+		  wrapX : false
+	   }),
+		
+		style : new ol.style.Style({
+		  fill : new ol.style.Fill({
+			   color : 'rgba(255,255,255,0)'
+			}),
+		 stroke : new ol.style.Stroke({
+			color : '#ffffff',
+			width : 1
+		  }),
+		 image : new ol.style.Circle({
+			radius : 7,
+			fill : new ol.style.Fill({
+			 color : '#ffcc33' })
+			})
+		})
+	
+    });
+
+
+//	var split_coord = app.split_layer_coords;
+//	console.log(split_coord);
+	
+//    for (var i = 1080; i < 24000;i+1080){
+	
+//	split_layer.getSource().addFeature(new ol.Feature(new ol.geom.LineString([[i,0],[i,-18000]])))
+	  
+//	}
+	
+   
 
     var featureOverlay = new ol.layer.Vector({
 	source:new ol.source.Vector(),
@@ -119,127 +155,6 @@ function add_annotLayers(){
 	}
 
     });
-      var geojsonObject = {
-        'type': 'FeatureCollection',
-        'crs': {
-          'type': 'name',
-          'properties': {
-            'name': 'EPSG:3857'
-          }
-        },
-        'features': [{
-          'type': 'Feature',
-          'geometry': {
-            'type': 'Point',
-            'coordinates': [0, 0]
-          }
-        }, {
-          'type': 'Feature',
-          'geometry': {
-            'type': 'LineString',
-            'coordinates': [[4e6, -2e6], [8e6, 2e6]]
-          }
-        }, {
-          'type': 'Feature',
-          'geometry': {
-            'type': 'LineString',
-            'coordinates': [[4e6, 2e6], [8e6, -2e6]]
-          }
-        }, {
-          'type': 'Feature',
-          'geometry': {
-            'type': 'Polygon',
-            'coordinates': [[[-5e6, -1e6], [-4e6, 1e6], [-3e6, -1e6]]]
-          }
-        }, {
-          'type': 'Feature',
-          'geometry': {
-            'type': 'MultiLineString',
-            'coordinates': [
-              [[-1e6, -7.5e5], [-1e6, 7.5e5]],
-              [[1e6, -7.5e5], [1e6, 7.5e5]],
-              [[-7.5e5, -1e6], [7.5e5, -1e6]],
-              [[-7.5e5, 1e6], [7.5e5, 1e6]]
-            ]
-          }
-        }, {
-          'type': 'Feature',
-          'geometry': {
-            'type': 'MultiPolygon',
-            'coordinates': [
-              [[[-5e6, 6e6], [-5e6, 8e6], [-3e6, 8e6], [-3e6, 6e6]]],
-              [[[-2e6, 6e6], [-2e6, 8e6], [0, 8e6], [0, 6e6]]],
-              [[[1e6, 6e6], [1e6, 8e6], [3e6, 8e6], [3e6, 6e6]]]
-            ]
-          }
-        }, {
-          'type': 'Feature',
-          'geometry': {
-            'type': 'GeometryCollection',
-            'geometries': [{
-              'type': 'LineString',
-              'coordinates': [[-5e6, -5e6], [0, -5e6]]
-            }, {
-              'type': 'Point',
-              'coordinates': [4e6, -5e6]
-            }, {
-              'type': 'Polygon',
-              'coordinates': [[[1e6, -6e6], [2e6, -4e6], [3e6, -6e6]]]
-            }]
-          }
-        }]
-      };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   var split_layer = new ol.layer.Vector({
-  
-	source : new ol.source.Vector({
-   	url : 'http://mitradevel.cshl.org/static/tile_split.geojson',
-    	format:new ol.format.GeoJSON(),
-                wrapX: false,
-                }),
-
-    	style: new ol.style.Style({
-          fill: new ol.style.Fill({
-          color: 'rgba(255, 255, 255, 0)'
-	}),
-          
-	stroke: new ol.style.Stroke({
-            color: '#000000',
-            width: 1
-          }),
-	
-	image: new ol.style.Circle({
-            radius: 7,
-            fill: new ol.style.Fill({
-              color: '#ffcc33'
-        	})
-         })
-        }),
-    //visible:false
-  });
-
- 
-
 
     var highlight;
     
@@ -253,7 +168,7 @@ function add_annotLayers(){
     app.map.addLayer(app.vector_data);
     app.map.addLayer(app.vector_deletions);
     app.map.addLayer(app.featureOverlay);
-    app.map.addLayer(app.split_layer);
+    app.map.addLayer(app.split_layer);	
     app.modify = modify;
     app.highlight = highlight;
     // app.map.addInteraction(modify);
@@ -423,6 +338,8 @@ function remove_user(){
  $('#username').html('');
  $('#login').show();
  $('#logout').hide();
+ $('#callpost').hide();
+
 }
 
 function add_user(){
@@ -431,6 +348,7 @@ function add_user(){
    $('#username').html(cont);
    $('#logout').show();
    $('#login').hide();
+   $('#callpost').show();	
  }
 }
 
