@@ -334,12 +334,13 @@ var thickLineToPolygon = (function () {
 }());
 
 
+
+
 function remove_user(){
  $('#username').html('');
  $('#login').show();
  $('#logout').hide();
  $('#callpost').hide();
-
 }
 
 function add_user(){
@@ -348,7 +349,7 @@ function add_user(){
    $('#username').html(cont);
    $('#logout').show();
    $('#login').hide();
-   $('#callpost').show();	
+   $('#callpost').show();
  }
 }
 
